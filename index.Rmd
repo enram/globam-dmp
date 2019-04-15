@@ -8,7 +8,7 @@ github-repo: "enram/globam-dmp"
 output:
   bookdown::gitbook:
     split_by: rmd
-    df_print: paged
+    df_print: kable
     config:
       download: ["pdf"]
       search: yes
@@ -22,8 +22,7 @@ output:
 knitr::opts_chunk$set(
   echo = FALSE, # Exclude code chunks from output
   warning = FALSE,
-  message = FALSE,
-  rownames.print = FALSE # Option for df_print = paged
+  message = FALSE
 )
 ```
 
