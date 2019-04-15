@@ -1,16 +1,20 @@
 # European radars
 
 ```{r}
-opera_radars <- fromJSON(here("data", "OPERA_RADARS_DB.json"))
+# Read files
+opera_radars <- fromJSON("http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/OPERA_RADARS_DB.json")
 ```
 
+## OPERA listing
+
 ```{r}
+# Group radars by country and show number of all vs operational radars
 opera_radars %>%
   group_by(country) %>%
   arrange(country) %>%
   summarize(
-    `radars` = n_distinct(number),
-    `operational` = n_distinct(number[status == 1])
+    radars = n_distinct(number),
+    operational = n_distinct(number[status == 1]) # Status = 1 => operational
   ) %>%
   adorn_totals("row")
 ```
