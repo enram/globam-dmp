@@ -1,0 +1,16 @@
+# European radars
+
+```{r}
+opera_radars <- fromJSON(here("data", "OPERA_RADARS_DB.json"))
+```
+
+```{r}
+opera_radars %>%
+  group_by(country) %>%
+  arrange(country) %>%
+  summarize(
+    `radars` = n_distinct(number),
+    `operational` = n_distinct(number[status == 1])
+  ) %>%
+  adorn_totals("row")
+```
