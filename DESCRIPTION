@@ -5,8 +5,9 @@ Version: 0.0.1
 Description: This description file is only used to define dependencies.
 Imports:
     bookdown,
-    dplyr,
+    tidyverse,
     tidylog,
+    lubridate,
     here,
     janitor,
     jsonlite

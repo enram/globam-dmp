@@ -27,11 +27,14 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Intro
+
 Welcome to the GloBAM Data Management Plan.
 
 ```{r}
-library(dplyr)          # To do data science
+library(tidyverse)      # To do data science
 library(tidylog)        # To provide feedback on dplyr functions
+library(lubridate)      # To work with dates
 library(here)           # To find files
 library(janitor)        # To add totals to tables
 library(jsonlite)       # To read json
