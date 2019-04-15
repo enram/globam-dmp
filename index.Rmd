@@ -9,6 +9,13 @@ output:
   bookdown::gitbook:
     split_by: rmd
     df_print: paged
+    config:
+      download: ["pdf"]
+      search: yes
+      sharing:
+        facebook: no
+        twitter: yes
+        all: []
 ---
 
 ```{r setup, include=FALSE}
