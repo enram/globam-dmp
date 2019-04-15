@@ -1,0 +1,18 @@
+---
+title: "GloBAM Data Management Plan"
+author:
+- "Peter Desmet"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+github-repo: enram/dmp
+output:
+  bookdown::gitbook:
+    split_by: rmd
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Welcome to the GloBAM Data Management Plan.

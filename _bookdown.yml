@@ -1,0 +1,5 @@
+# Temp file created while building
+book_filename: dmp.Rmd
+
+# Delete temp file after building
+delete_merged_file: true
