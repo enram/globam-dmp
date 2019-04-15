@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 Welcome to the GloBAM Data Management Plan.
 
 ```{r}
-library(tidyverse)      # To do data science
+library(dplyr)          # To do data science
 library(tidylog)        # To provide feedback on dplyr functions
 library(here)           # To find files
 library(janitor)        # To add totals to tables

@@ -5,9 +5,10 @@ Version: 0.0.1
 Description: This description file is only used to define dependencies.
 Imports:
     bookdown,
+    dplyr,
+    tidylog,
     here,
     janitor,
-    jsonlite,
-    tidyverse
+    jsonlite
 Remotes:
     rstudio/bookdown
