@@ -1,0 +1,17 @@
+language: r
+cache: packages
+
+before_script:
+  # Dependencies are defined in DESCRIPTION
+
+script:
+  - Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
+  - Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::pdf_book')"
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: _book
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
