@@ -11,6 +11,6 @@ rmd_files: [
 ]
 
 # Where Rmd files are kept
-edit: https://github.com/enram/dmp/blob/master/%s
+edit: https://github.com/enram/globam-dmp/blob/master/%s
 
 # All other settings are defined in index.Rmd
