@@ -4,6 +4,10 @@ Title: GloBAM Data Management Plan
 Version: 0.0.1
 Description: This description file is only used to define dependencies.
 Imports:
-    bookdown
+    bookdown,
+    here,
+    janitor,
+    jsonlite,
+    tidyverse
 Remotes:
     rstudio/bookdown
