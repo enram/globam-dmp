@@ -1,5 +1,16 @@
 # Temp file created while building
-book_filename: dmp.Rmd
+book_filename: globam-dmp.Rmd
 
 # Delete temp file after building
 delete_merged_file: true
+
+# Order of the chapters (= which Rmd files to include)
+rmd_files: [
+  index.Rmd,
+  src/eu_radars.Rmd
+]
+
+# Where Rmd files are kept
+edit: https://github.com/enram/dmp/blob/master/%s
+
+# All other settings are defined in index.Rmd
