@@ -3,6 +3,7 @@
 ```{r}
 # Read files
 opera_radars <- fromJSON("http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/OPERA_RADARS_DB.json")
+vp_coverage <- read.csv("https://lw-enram.s3-eu-west-1.amazonaws.com/coverage.csv")
 ```
 
 ## OPERA listing
@@ -18,3 +19,17 @@ opera_radars %>%
   ) %>%
   adorn_totals("row")
 ```
+
+## VP coverage
+
+```{r}
+vp_coverage %>%
+  mutate(year = year(date)) %>%
+  group_by(countryradar, year) %>%
+  summarize(
+    days = n_distinct(date) # Number of dates with vp files
+  ) %>%
+  spread(year, days) %>% # Create year columns with days values
+  adorn_totals("col")
+```
+
