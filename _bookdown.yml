@@ -7,7 +7,7 @@ delete_merged_file: true
 # Order of the chapters (= which Rmd files to include)
 rmd_files: [
   index.Rmd,
-  src/eu_radars.Rmd
+  src/europe.Rmd
 ]
 
 # Where Rmd files are kept
