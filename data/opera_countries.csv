@@ -1,0 +1,32 @@
+country,iso_code,in_license_agreement
+Austria,AT,TRUE
+Belgium,BE,TRUE
+Bulgaria,BG,FALSE
+Croatia,HR,TRUE
+Cyprus,CY,FALSE
+Czechia,CZ,TRUE
+Denmark,DK,TRUE
+Estonia,EE,TRUE
+Finland,FI,TRUE
+France,FR,TRUE
+Germany,DE,TRUE
+Greece,GR,FALSE
+Hungary,HU,FALSE
+Iceland,IS,FALSE
+Ireland,IE,FALSE
+Italy,IT,FALSE
+Latvia,LV,FALSE
+Malta,MT,FALSE
+Netherlands,NL,TRUE
+Norway,NO,TRUE
+Poland,PL,TRUE
+Portugal,PT,TRUE
+Republic of Moldova,MD,FALSE
+Romania,RO,FALSE
+Serbia,RS,FALSE
+Slovakia,SK,TRUE
+Slovenia,SI,TRUE
+Spain,ES,TRUE
+Sweden,SE,TRUE
+Switzerland,CH,TRUE
+United Kingdom,GB,TRUE
