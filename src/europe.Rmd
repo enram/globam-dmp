@@ -77,7 +77,7 @@ The BALTRAD archive needs to be assessed for coverage and quality before we can 
 
 ### Format
 
-- Format: `hdf5` in the [OPERA ODIM_h5 format](http://www.eumetnet.eu/sites/default/files/OPERA2014_O4_ODIM_H5_v2.2.pdf).
+- Format: `hdf5` in the [OPERA ODIM_h5 format](https://github.com/adokter/vol2bird/blob/master/doc/ODIM_H5_v23.pdf).
 - Granularity: a `pvol` file is typically generated every 15 minutes and contains scan data at about 20 altitudes.
 - Read in bioRad with: [`read_pvolfile`](http://adokter.github.io/bioRad/reference/read_pvolfile.html).
 
