@@ -11,5 +11,3 @@ Imports:
     here,
     janitor,
     jsonlite
-Remotes:
-    rstudio/bookdown

@@ -36,8 +36,9 @@ vignettes/*.pdf
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
 
+# Bookdown
+_book/
+_bookdown_files/
+
 # Mac OS X
 .DS_Store
-
-# Bookdown
-_book
