@@ -117,7 +117,7 @@ Coverage of the `pvol` archive at BALTRAD is currently unknown. Availability and
 
 ## VP
 
-`vp`
+`vp` data are vertical profiles of biological targets and the main data to be used by GloBAM.
 
 ### Source {#enram-data-repo}
 
@@ -162,6 +162,8 @@ vp_coverage %>%
 The ENRAM data repository is updated daily.
 
 ## VPTS
+
+`vpts` data are time series of vertical profiles and a more convenient way of reading `vp` data without any data loss.
 
 ### Format
 
