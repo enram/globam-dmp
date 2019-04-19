@@ -1,7 +1,7 @@
 ---
 title: "GloBAM Data Management Plan"
 author:
-- "Peter Desmet"
+- Peter Desmet
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 github-repo: "enram/globam-dmp"
@@ -53,3 +53,29 @@ Welcome to the data management plan (DMP) for the project _GloBAM: Towards monit
 3. Changes to the R Markdown files can be made by contributors to the GitHub repository or suggested by anyone as pull requests. Textual changes can be done directly on GitHub, code changes are better tested in RStudio first.
 4. Accepted changes (i.e. changes to the `master` branch) will trigger an [automatic build procedure](https://travis-ci.org/enram/globam-dmp) that will generate a new version of this DMP using the R package [bookdown](https://bookdown.org/yihui/bookdown/). The date of the build is used as the version number.
 
+## Citation
+
+```{r}
+# Read metadata from index.Rmd
+frontmatter <- rmarkdown::yaml_front_matter(here("index.Rmd"))
+
+# Split authors in form Last F, Last F
+authors <- map(frontmatter$author, function(x) {
+  split_name <- str_split(x, pattern = " ")[[1]]
+  paste(split_name[2], str_sub(split_name[1], 1, 1))
+})
+
+# Create citation
+citation <- paste0(
+  paste(authors, collapse = ", "),
+  " (",
+  year(Sys.Date()),
+  ") ",
+  frontmatter$title,
+  ". Version ",
+  Sys.Date(),
+  ". https://enram.github.io/globam-dmp/"
+)
+```
+
+> `r citation`
