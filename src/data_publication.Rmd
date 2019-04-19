@@ -1,0 +1,7 @@
+# Open data publication
+
+This chapter describes the data of long term value that GloBAM will generate.
+
+Not yet defined, but from the proposal:
+
+> The produced data will also be archived yearly as open data in an online research repository such as Zenodo (operated by CERN) where they will be assigned a Digital Object Identifier (DOI). These open data will be released under a Creative Commons Zero (CC0) waiver; formatted following open domain standards such as the ODIM bird profile specification; and documented with metadata describing their contributors, provenance, resolution, temporal and spatial coverage, and how to use these with open source software developed or contributed to by this project. To help users discover the data generated through this project, we will also develop an easy-to-use interface for the exploration of data at different spatial and temporal scales and offer derived data products that are ready to use in analyses. Materials supporting publications, such as software scripts and derived data products, will be deposited in open research repositories as well.

@@ -1,0 +1,13 @@
+# External data
+
+This chapter describes the external data required by GloBAM.
+
+## Climate
+
+## Wind
+
+## land use
+
+## Artificial light
+
+## Wind energy installations
