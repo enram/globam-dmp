@@ -1,0 +1,19 @@
+# Time series of vertical profiles data (`vpts`)
+
+This chapter describes time series of vertical profiles (`vpts`). `vpts` are `vp` data bundled in time series (without data loss) and are a more convenient way for downloading and reading this type of data.
+
+## License
+
+Not yet defined, but likely as **open data** under a [Creative Commons Zero waiver](https://creativecommons.org/publicdomain/zero/1.0/).
+
+## Source
+
+These files are not yet generated, but will be stored in the [ENRAM data repository][enram-repo].
+
+## Coverage
+
+Not yet defined, but likely the same as the `vp` data.
+
+## Format
+
+Not yet defined, but likely text format (`txt`, `json`, `csv`) and tabular. See [this issue](https://github.com/enram/globam-dmp/issues/16).

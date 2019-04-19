@@ -1,0 +1,49 @@
+# Vertical profiles of aerial migrants data (`vp`)
+
+This chapter describes vertical profiles of aerial migrants/biological signals (`vp`) data for Europe and the United States. Vertical profiles contain the speed, direction and density of aerial migrants at different altitudes for a specific radar location and time, and form the source data for GloBAM specifically and aeroecological research in general.
+
+## Source
+
+**European** `vp` data are generated daily from `pvol` data on the BALTRAD server and then transferred to the public [ENRAM data repository][enram-repo] (see \@ref(enram-pipeline)). **United States** `vp` data are being generated for the 25 year `pvol` archive, but not yet publicly archived.
+
+`vp` files can be downloaded from the ENRAM data repository individually, as monthly zips, or automatically in `bioRad` with  [`download_vpfiles()`](http://adokter.github.io/bioRad/reference/download_vpfiles.html).
+
+## License
+
+Data in the [ENRAM data repository](enram-repo) are available as **open data** under a [Creative Commons Zero waiver](https://creativecommons.org/publicdomain/zero/1.0/).
+
+For the **European data** it is recommended to acknowledge EUMETNET/OPERA in publications resulting from the use of these data as follows:
+
+> We acknowledge the [European Operational Program for Exchange of Weather Radar Information (EUMETNET/OPERA)](http://eumetnet.eu/activities/observations-programme/current-activities/opera/) for providing access to European radar data, faciliated through a research-only license agreement between EUMETNET/OPERA members and ENRAM.
+
+## Format
+
+A `vp` file is generated for each originating `pvol` file and thus has the same granularity. `vp` data are stored as `hdf5` files in the [ODIM bird profile format specification](https://github.com/adokter/vol2bird/wiki/ODIM-bird-profile-format-specification). These files can be read in `bioRad` with [`read_vpfiles()`](http://adokter.github.io/bioRad/reference/read_vpfiles.html).
+
+## Geographical scope
+
+The coverage of the [ENRAM data repository][enram-repo] is recorded daily in [`coverage.csv`](https://lw-enram.s3-eu-west-1.amazonaws.com/coverage.csv) and summarized here:
+
+```{r}
+vp_coverage <- read_csv("https://lw-enram.s3-eu-west-1.amazonaws.com/coverage.csv")
+vp_coverage %>%
+  # Create year column + rename column
+  mutate(year = year(date)) %>%
+  rename(radar = countryradar) %>%
+  
+  # Group by radar and year
+  group_by(radar, year) %>%
+  
+  # Show number of days with vp files
+  summarize(
+    days = n_distinct(date)
+  ) %>%
+  
+  # Create year columns with days values
+  spread(year, days) %>%
+  adorn_totals("col")
+```
+
+## Temporal scope
+
+Data transfer to the [ENRAM data repository][enram-repo] become more or less operational in March 2018 (with a gap in July 2018). Data from 2016 were uploaded for the European flyway study [Nilsson et al. 2018](https://doi.org/10.1111/ecog.04003).

@@ -1,14 +1,44 @@
-# European radar data
+# European radar data (`pvol`)
 
-This chapter describes European radar data (`pvol`) and derived data products (`vp` and `vpts`).
+This chapter describes polar volume (`pvol`) data from European weather radars.
 
-## License agreement {#license-agreement}
+## Source
+
+`pvol` data are collected by **national weather services** in Europe. They have different approaches in processing, archiving and providing access to these data. Some **research labs** (e.g. UvA) also have archived subsets of these `pvol` data for research use.
+
+The best source for consolidated `pvol` data however is **[BALTRAD](http://baltrad.eu/)**, managed by [SMHI](https://www.smhi.se/en/research/research-departments/atmospheric-remote-sensing/contact-us-1.4801) (contact person: Günther Haase). `pvol` data are archived there, but access to that server is restricted to SMHI. See \@ref(baltrad-pvol) for details on how `pvol` data are submitted to this archive.
+
+The rest of this chapter discusses the specifics of the BALTRAD archive.
+
+## License
 
 European radar data exchange is coordinated by the _European Operational Program for Exchange of Weather Radar Information ([EUMETNET/OPERA](http://eumetnet.eu/activities/observations-programme/current-activities/opera/))_. GloBAM has access to these data via the _EIG EUMETNET license agreement for Research use of OPERA data_, which grants a specific list of people (involved in ENRAM and GloBAM) access to radar data from selected countries under the following conditions (excerpt):
 
-> The OPERA Members Data will be provided for use within the ENRAM Project for the purpose of extracting animal migration information for scientific research. The Grant of this License does not permit use of the OPERA Members Data licensed to be used for commercial purposes or exploitation for profit.
+> The Licensor grants the Licensees a non-Exclusive license to use intellectual property belonging to the EUMETNET members as defined below [ ... ]
+> 
+> The OPERA Members Data will be provided for use within the ENRAM Project for the purpose of extracting animal migration information for scientific research.
+> 
+> The Grant of this License does not permit use of the OPERA Members Data licensed to be used for commercial purposes or exploitation for profit.
 
-## Radars
+The license agreement allows us to access European `pvol` data for the sole purpose of extracting animal migration information for scientific research. Storing, sharing or other use of these data is **restricted** and requires prior written consent of the Licensor.
+
+## Format
+
+The delivery of European `pvol` data is defined in the license agreement:
+
+> The Licensor will make the OPERA Members Data available to the Licensees in accordance to the following data description and technical specifications:
+> 
+> a. Single-site polar volumes containing reflectivity, optionally also Doppler velocity, uncorrected reflectivity and dual-pol parameters. Data model ODIM as described in OPERA pages of the EUMETNET website (http://www.eumetnet.eu)
+> b. Update frequency – 15 minutes
+> c. Issue time – up to 120 minutes after data time
+> d. Format: HDF5
+> e. Delivery method: FTP via Internet using an ad hoc server. A username and password will be created for ENRAM.
+> f. Availability of OPERA Members Data  will be on the basis of reasonable endeavour
+> g. Support: OPERA documents are available from the EUMETNET website’s OPERA pages (http://www.eumetnet.eu). OPERA Program Manager will manage technical questions related to the OPERA Products but may address more complicated issues to a team member who may charge a fee.
+
+Data is thus provided for every 15 minutes as `hdf5` in the [OPERA ODIM_h5 format](https://github.com/adokter/vol2bird/blob/master/doc/ODIM_H5_v23.pdf). These files can be read in `bioRad` with [`read_pvolfile()`](http://adokter.github.io/bioRad/reference/read_pvolfile.html).
+
+## Geographical scope
 
 ```{r download_opera_db}
 # Download OPERA database as json and store in this repo
@@ -21,10 +51,7 @@ opera_radars <- fromJSON(here("data", "OPERA_RADARS_DB.json"))
 opera_countries <- read_csv(here("data", "opera_countries.csv"))
 ```
 
-OPERA manages a list of radar metadata (`r opera_radars %>% nrow()` radars). This **OPERA database** is available as:
-
-* [an interactive map](http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/index.html)
-* [a json file](http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/OPERA_RADARS_DB.json): source file for the map. This file is also [archived on GitHub](https://github.com/enram/globam-dmp/blob/master/data/OPERA_RADARS_DB.json) every time we update the DMP, so we can track changes.
+OPERA manages a list of radar metadata (`r opera_radars %>% nrow()` radars). This **OPERA database** is available as [an interactive map](http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/index.html) derived from [a json file containing the metadata](http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/OPERA_RADARS_DB.json). To keep track of changes, we archive this `json` on [GitHub](https://github.com/enram/globam-dmp/blob/master/data/OPERA_RADARS_DB.json) every time we update the DMP.
 
 The license agreement allows access to data from `r opera_countries %>% filter(in_license_agreement) %>% nrow()` countries:
 
@@ -49,138 +76,22 @@ opera_radars %>%
   adorn_totals("row")
 ```
 
-## PVOL
+The BALTRAD archive does not contain `pvol` data for all of these radars/countries however (see \@ref(baltrad-pvol)). Its precise geographical scope is currently **unknown**, but being gathered in [this spreadsheet](https://docs.google.com/spreadsheets/d/1dulZ4TLjxIjmUek5QP86uJ9DsZqm9d0G6vl6hnA0mw4/edit?usp=sharing).
 
-`pvol` stands for polar volume data. These data are generated by weather radars and are the source for vertical profiles (`vp`) of biological targets.
+## Temporal scope
 
-### Format
-
-- Format: `hdf5` in the [OPERA ODIM_h5 format](https://github.com/adokter/vol2bird/blob/master/doc/ODIM_H5_v23.pdf).
-- Granularity: a `pvol` file is typically generated every 15 minutes and contains scan data at about 20 elevations.
-- bioRad function: [`read_pvolfile()`](http://adokter.github.io/bioRad/reference/read_pvolfile.html).
-
-### Source
-
-#### BALTRAD {#baltrad}
-
-The best source for consolidated `pvol` data is **[BALTRAD](http://baltrad.eu/)**, managed by [SMHI](https://www.smhi.se/en/research/research-departments/atmospheric-remote-sensing/contact-us-1.4801) (contact person: Günther Haase). `pvol` data are archived there, but access to that server is restricted to SMHI. For data to be available in BALTRAD, several conditions [need to be met](https://github.com/adokter/vol2bird/wiki/Radar-data-requirements-and-availability-for-ENRAM#future-radar-data-availability-for-enram):
-
-1. A country should send both reflectivity and radial velocity data to the [OPERA](http://www.eumetnet.eu/opera) data centre, which is called [ODYSSEY](http://www.eumetnet.eu/odyssey-opera-data-centre). While many countries are sending reflectivity data, radial velocities are still unavailable for many countries.
-2. ODYSSEY should forward these data to the BALTRAD datahub. It is standard policy to do so, but in practice data is not yet forwarded correctly for some radars/countries. 
-3. Currently BALTRAD and ODYSSEY store data at a 15 minute interval, higher resolution data is not yet available.
-
-#### Research labs
-
-Some research labs (e.g. UvA) also have archived `pvol` data for a subset of radars/years.
-
-#### National weather services
-
-More or more precise `pvol` data can be available at the national weather services as well.
-
-### Access
-
-**Restricted access**: access and use of `pvol` data is subject to the license agreement (\@ref(license-agreement)). These data cannot be shared further without approval from OPERA. Transferring these data to a (private) cloud platform is also sensitive.
-
-### Coverage
-
-Coverage of the `pvol` archive at BALTRAD is currently unknown. Availability and coverage are being gathered in [this spreadsheet](https://docs.google.com/spreadsheets/d/1dulZ4TLjxIjmUek5QP86uJ9DsZqm9d0G6vl6hnA0mw4/edit?usp=sharing).
-
-### Up-to-dateness
-
-`pvol` date at BALTRAD are normally up to date to within a day.
-
-## PVOL → VP
-
-...
-
-## VP
-
-`vp` stands for vertical profiles of biological targets. These form the main data to be used by GloBAM.
-
-### Source {#enram-data-repo}
-
-`vp` data generated at BALTRAD are transferred daily to the [ENRAM data repository](http://enram.github.io/data-repository/).
-
-### Access
-
-**Open data**: Data in ENRAM data repository are available under a [Creative Commons Zero waiver](https://creativecommons.org/publicdomain/zero/1.0/).
-
-### Format
-
-- Format: `hdf5` in the [ODIM bird profile format specification](https://github.com/adokter/vol2bird/wiki/ODIM-bird-profile-format-specification).
-- Granularity: a `vp` file is generated for each source `pvol` file and thus has the same granularity.
-- bioRad function: [`read_vpfiles()`](http://adokter.github.io/bioRad/reference/read_vpfiles.html).
-
-### Coverage
-
-The coverage of the ENRAM data repository is recorded daily in [`coverage.csv`](https://lw-enram.s3-eu-west-1.amazonaws.com/coverage.csv) and summarized here:
-
-```{r}
-vp_coverage <- read_csv("https://lw-enram.s3-eu-west-1.amazonaws.com/coverage.csv")
-vp_coverage %>%
-  # Create year column + rename column
-  mutate(year = year(date)) %>%
-  rename(radar = countryradar) %>%
-  
-  # Group by radar and year
-  group_by(radar, year) %>%
-  
-  # Show number of days with vp files
-  summarize(
-    days = n_distinct(date)
-  ) %>%
-  
-  # Create year columns with days values
-  spread(year, days) %>%
-  adorn_totals("col")
-```
-
-### Up-to-dateness
-
-The ENRAM data repository is updated daily.
-
-## VPTS
-
-`vpts` stands for time series of vertical profiles. These are a more convenient way of reading `vp` data without any data loss.
-
-### Format
-
-Tabular, but to be defined: https://github.com/enram/globam-dmp/issues/16
-
-### Source
-
-These files are not yet generated, but will be stored in the [ENRAM data repository](http://enram.github.io/data-repository/).
-
-### Access
-
-**Open access**
-
-### Coverage
-
-Not yet defined.
-
-### Up-to-dateness
-
-Not yet defined.
+The temporal scope of the BALTRAD archive is currently **unknown**.
 
 ## Historical archive
 
-GloBAM needs a **2-3 year archive** of European `pvol` and derived `vp` data to tackle its research questions. By starting from a `pvol` archive, the generation of `vp` data can be reproduced if need be, e.g. to make sure adequate vol2bird settings/versions are used.
+GloBAM needs a **2-3 year archive** of European `pvol` and derived `vp` data to tackle its research questions. By starting from a `pvol` archive, the generation of `vp` data can be reproduced if need be, e.g. to make sure adequate `vol2bird` settings/versions are used.
 
-### Source and access
-
-- `pvol`: BALTRAD (\@ref(baltrad)) is likely to be the best source. **Restricted access**
-- `vp`: ENRAM data repository (\@ref(enram-data-repo)). **Open data**
-- `vpts`: ENRAM data repository (\@ref(enram-data-repo)). **Open data**
-
-### Coverage
-
-The BALTRAD archive needs to be assessed for coverage and quality before we can define the subset of the archive we want to use. Tasks for this are listed [here](https://github.com/enram/globam-dmp/milestone/1) and include:
+The `pvol` archive at BALTRAD is likely to be the best source for this archive, but its scope and quality need to be assessed before we can proceed. Tasks for this are listed [here](https://github.com/enram/globam-dmp/milestone/1) and include:
 
 1. Get a file listing for `pvol` archive
 2. Select subsets: first 2 days of data per radar/month for 2016, 2017, 2018 (72 days): either pvol or pre-merged scans
 3. Transfer subsets to accessible FTP server
 4. Merge to pvol (test 1)
-5. Process with vol2bird to `vp` (test 2)
-6. Store output vp files
+5. Process with `vol2bird` to `vp` (test 2)
+6. Store output `vp` files
 7. Visual control of `vp` (test 3)

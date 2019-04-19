@@ -1,0 +1,29 @@
+# Processing pipeline
+
+This chapter describes the processing pipeline from `pvol` over `vp` to `vpts` data.
+
+## European `pvol` {#baltrad-pvol}
+
+[BALTRAD](http://baltrad.eu/) collects `pvol` data for Europe. For `pvol` data to be available in BALTRAD, several conditions [need to be met](https://github.com/adokter/vol2bird/wiki/Radar-data-requirements-and-availability-for-ENRAM#future-radar-data-availability-for-enram):
+
+1. A country should send both reflectivity and radial velocity data to the [OPERA](http://www.eumetnet.eu/opera) data centre, which is called [ODYSSEY](http://www.eumetnet.eu/odyssey-opera-data-centre). While many countries are sending reflectivity data, radial velocities are still unavailable for many countries.
+2. ODYSSEY should forward these data to the BALTRAD datahub. It is standard policy to do so, but in practice data is not yet forwarded correctly for some radars/countries. 
+3. Currently BALTRAD and ODYSSEY store data at a 15 minute interval, higher resolution data is not yet available.
+
+## European `pvol` to `vp`
+
+A server at BALTRAD processes any incoming `pvol` data with [`vol2bird`](https://github.com/adokter/vol2bird). This pipeline is maintained by Günther Haase ([SMHI](https://www.smhi.se/en/research/research-departments/atmospheric-remote-sensing/contact-us-1.4801)).
+
+The resulting `vp` files are stored for 2 days on a private FTP server to which we have access. The used `vol2bird` version is stored in the metadata of the `vp` files and can differ over time. The latest files are created with `vol2bird 0.3.20` (last tested April 11, 2019).
+
+## `vp` archiving {#enram-pipeline}
+
+**European** `vp` data are archived daily by a pipeline running on Amazon Web Services (AWS) which transfers `vp` files from the BALTRAD FTP server to a public [S3 bucket](https://lw-enram.s3-eu-west-1.amazonaws.com). This pipeline is maintained by Stijn Van Hoey ([Open science lab for biodiversity](https://twitter.com/oscibio)) and its code and documentation are available in [this repository](https://github.com/enram/data-repository). Note that any issues in the pipeline that are not resolved within 2 days (the time `vp` data are kept on the FTP server) **can result in data loss**.
+
+The pipeline also updates a [coverage file](https://lw-enram.s3-eu-west-1.amazonaws.com/coverage.csv) and bundles `vp` files in monthly zips per radar (e.g. [`bejab201904.zip`](https://lw-enram.s3-eu-west-1.amazonaws.com/be/jab/2019/bejab201904.zip)). A [public website][enram-repo] allows easier file navigation of the S3 bucket.
+
+**United States** `vp` data are currently not archived. See [issue](https://github.com/enram/globam-dmp/issues/19).
+
+## `vp` to `vpts`
+
+Not yet defined, but likely part of the ENRAM pipeline (see \@ref(enram-pipeline)).

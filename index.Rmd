@@ -37,6 +37,10 @@ library(janitor)        # To add totals to tables
 library(jsonlite)       # To read json
 ```
 
+<!-- References used in this document -->
+
+[enram-repo]: http://enram.github.io/data-repository/
+
 # Intro
 
 Welcome to the data management plan (DMP) for the project _GloBAM: Towards monitoring, understanding and forecasting global biomass flows of aerial migrants_.
