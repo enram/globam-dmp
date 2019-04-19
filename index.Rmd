@@ -27,13 +27,8 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE
 )
-```
 
-# Intro
-
-Welcome to the GloBAM Data Management Plan.
-
-```{r}
+# Load required libraries
 library(tidyverse)      # To do data science
 library(tidylog)        # To provide feedback on dplyr functions
 library(lubridate)      # To work with dates
@@ -41,4 +36,20 @@ library(here)           # To find files
 library(janitor)        # To add totals to tables
 library(jsonlite)       # To read json
 ```
+
+# Intro
+
+Welcome to the data management plan (DMP) for the project _GloBAM: Towards monitoring, understanding and forecasting global biomass flows of aerial migrants_.
+
+## Distributions
+
+- Website: <https://enram.github.io/globam-dmp/>
+- PDF: <https://enram.github.io/globam-dmp/globam-dmp.pdf>
+
+## How this DMP is maintained
+
+1. This DMP is maintained and versioned on GitHub at <https://github.com/enram/globam-dmp/>.
+2. Each chapter is an [R Markdown](https://rmarkdown.rstudio.com/) file (`Rmd`) in the `src` directory of that GitHub repository. You can access it directly by clicking the pencil icon in the top navigation of this website.
+3. Changes to the R Markdown files can be made by contributors to the GitHub repository or suggested by anyone as pull requests. Textual changes can be done directly on GitHub, code changes are better tested in RStudio first.
+4. Accepted changes (i.e. changes to the `master` branch) will trigger an [automatic build procedure](https://travis-ci.org/enram/globam-dmp) that will generate a new version of this DMP using the R package [bookdown](https://bookdown.org/yihui/bookdown/). The date of the build is used as the version number.
 
