@@ -10,6 +10,8 @@ output:
     split_by: rmd
     df_print: kable
     config:
+      toc:
+        collapse: section
       search: yes
       edit: https://github.com/enram/globam-dmp/blob/master/%s
       download: ["pdf"]
