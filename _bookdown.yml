@@ -11,8 +11,8 @@ rmd_files: [
   src/pvol_us.Rmd,
   src/vp.Rmd,
   src/vpts.Rmd,
-  src/external_data.Rmd,
   src/pipeline.Rmd,
+  src/external_data.Rmd,
   src/data_publication.Rmd
 ]
 
