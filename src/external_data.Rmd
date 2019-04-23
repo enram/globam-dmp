@@ -10,7 +10,18 @@ This chapter describes the external data required by GloBAM.
 
 ## Artificial light
 
+Needed by WP3.
+
+### Sources
+
+[Visible Infrared Imaging Radiometer Suite (VIIRS) Day/Night Band](https://ngdc.noaa.gov/eog/viirs/download_dnb_composites.html) provided by NOAA. See that page for a description, filenaming conventions, data types/formats and providing credit.
+
+We _might_ also use the new [Black Marble product](https://viirsland.gsfc.nasa.gov/Products/NASA/BlackMarble.html) from NASA once it is released.
+
 ## Wind energy installations
 
-* **Needed by**: WP4 (Judy Shamoun-Baranes)
-* **Source**: Depends on the exact research questions and what is available. Will be updated in DMP once known.
+Needed by WP4 (Judy Shamoun-Baranes).
+
+### Sources
+
+Depends on the exact research questions and what is available. Will be updated in DMP once known.
