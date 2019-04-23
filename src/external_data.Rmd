@@ -6,8 +6,11 @@ This chapter describes the external data required by GloBAM.
 
 ## Wind
 
-## land use
+## Land use
 
 ## Artificial light
 
 ## Wind energy installations
+
+* **Needed by**: WP4 (Judy Shamoun-Baranes)
+* **Source**: Depends on the exact research questions and what is available. Will be updated in DMP once known.
