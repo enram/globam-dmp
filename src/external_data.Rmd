@@ -2,8 +2,6 @@
 
 This chapter describes the external data required by GloBAM.
 
-## Climate
-
 ## Wind
 
 ## Land use
