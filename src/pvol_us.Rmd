@@ -1,13 +1,44 @@
 # US radar data (`pvol`)
 
-This chapter describes polar volume (`pvol`) data from weather radars in the United States.
+This chapter describes polar volume (`pvol`) data from weather radars in the United States. The National Oceanic and Atmospheric Administration ([NOAA](https://www.noaa.gov)) operates a network of approximately 160 Next Generation Weather Radar (NEXRAD), WSR-88D sites in the US and associated territories. 
 
 ## Source
+Archived and real-time pvols (called “level II data” in the US) are stored on Amazon S3, see [NEXRAD on AWS](https://registry.opendata.aws/noaa-nexrad/). It is hosted in the [noaa-nexrad-level2](https://noaa-nexrad-level2.s3.amazonaws.com) Amazon S3 bucket in the us-east-1 AWS region. 
 
 ## License
+There are no restrictions on the use of this data.
 
 ## Format
+From the AWS [documentation](https://docs.opendata.aws/noaa-nexrad/readme.html) for archive data:
+
+```
+Each volume scan file of archival data is available as an object in Amazon S3. The basic data format is:
+
+/<Year>/<Month>/<Day>/<NEXRAD Station/>/<filename>
+
+Where:
+
+<Year> is the year the data was collected
+<Month> is the month of the year the data was collected
+<Day> is the day of the month the data was collected
+<NEXRAD Station> is the NEXRAD ground station (map of ground stations)
+<filename> is the name of the file containing the data. These are compressed files (compressed with gzip). The file name has more precise timestamp information.
+All files in the archive use the same compressed format (.gz). The data file names are, for example, KAKQ20010101_080138.gz. The file naming convention is:
+
+GGGGYYYYMMDD_TTTTTT
+
+Where:
+
+GGGG = Ground station ID (map of ground stations)
+YYYY = year
+MM = month
+DD = day
+TTTTTT = time when data started to be collected (GMT)
+Note that the 2015 files have an additional field on the file name. It adds “_V06” to the end of the file name. An example is KABX20150303_001050_V06.gz.
+```
 
 ## Geographical scope
+The NEXRAD network covers continental US, Alaska, Hawaii, Guam, South Korea and Puerto Rico. Sites in use vary slightly over time, see [here](https://www.roc.noaa.gov/wsr88d/Level_II/Level2Info.aspx) for more information
 
 ## Temporal scope
+The archive spans from June 1991 to present. However, during this time significant changes have been made... **Adriaan, can you add some info on the dual pol upgrade etc?**
