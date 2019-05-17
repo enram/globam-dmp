@@ -2,6 +2,8 @@
 title: "GloBAM Data Management Plan"
 author:
 - Peter Desmet
+- Cecilia Nilsson
+- Adriaan Dokter
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 github-repo: "enram/globam-dmp"
