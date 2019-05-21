@@ -49,7 +49,10 @@ See https://www.ncdc.noaa.gov/data-access/radar-data/radar-decoding for availabl
 
 The NEXRAD network covers continental US, Alaska, Hawaii, Guam, South Korea and Puerto Rico. Sites in use vary slightly over time, see [here](https://www.roc.noaa.gov/wsr88d/Level_II/Level2Info.aspx) for more information, [maps](https://www.roc.noaa.gov/WSR88D/Maps.aspx) here.
 
-![NEXRAD radar network in the lower 48 states](https://upload.wikimedia.org/wikipedia/commons/0/01/WSR-88DCONUSCoverage1000.jpg)
+```{r fig.cap="NEXRAD radar network in the lower 48 states", out.width="100%"}
+# Source: https://upload.wikimedia.org/wikipedia/commons/0/01/WSR-88DCONUSCoverage1000.jpg
+knitr::include_graphics(path = here("images", "WSR-88DCONUSCoverage1000.jpg"))
+```
 
 ## Temporal scope
 
