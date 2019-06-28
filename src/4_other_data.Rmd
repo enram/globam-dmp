@@ -1,4 +1,4 @@
-# External data
+# Other external data
 
 This chapter describes the external data required by GloBAM.
 

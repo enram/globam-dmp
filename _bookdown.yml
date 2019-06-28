@@ -7,13 +7,14 @@ delete_merged_file: true
 # Order of the chapters (= which Rmd files to include)
 rmd_files: [
   index.Rmd,
-  src/pvol_europe.Rmd,
-  src/pvol_us.Rmd,
-  src/vp.Rmd,
-  src/vpts.Rmd,
-  src/pipeline.Rmd,
-  src/external_data.Rmd,
-  src/data_publication.Rmd
+  src/1_introduction.Rmd,
+  src/2_pvol_europe.Rmd,
+  src/3_pvol_us.Rmd,
+  src/4_other_data.Rmd,
+  src/5_vp.Rmd,
+  src/6_vpts.Rmd,
+  src/7_open_data.Rmd,
+  src/8_software.Rmd
 ]
 
 # All other settings are defined in index.Rmd

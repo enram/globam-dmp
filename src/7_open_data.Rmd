@@ -1,4 +1,6 @@
-# Open data publication
+# (PART\*) Publishing & preservation {-}
+
+# Open data
 
 This chapter describes the data of long term value that GloBAM will generate.
 
