@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>GloBAM Data Management Plan</title>
-  <meta name="description" content="GloBAM Data Management Plan" />
+  <title>3 US radar data (pvol) | GloBAM Data Management Plan</title>
+  <meta name="description" content="3 US radar data (pvol) | GloBAM Data Management Plan" />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="GloBAM Data Management Plan" />
+  <meta property="og:title" content="3 US radar data (pvol) | GloBAM Data Management Plan" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="enram/globam-dmp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="GloBAM Data Management Plan" />
+  <meta name="twitter:title" content="3 US radar data (pvol) | GloBAM Data Management Plan" />
   
   
   
@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="1_introduction.html">
+<link rel="prev" href="2_pvol_europe.html">
+<link rel="next" href="4_other_data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -140,36 +140,84 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">GloBAM Data Management Plan</h1>
-<p class="author"><em>Peter Desmet</em></p>
-<p class="author"><em>Cecilia Nilsson</em></p>
-<p class="author"><em>Adriaan Dokter</em></p>
-<p class="date"><em>2019-06-29</em></p>
+<div id="us-radar-data-pvol" class="section level1">
+<h1><span class="header-section-number">3</span> US radar data (<code>pvol</code>)</h1>
+<p>This chapter describes polar volume (<code>pvol</code>) data from weather radars in the United States: one the main data sources for GloBAM.</p>
+<div id="data-collecting-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> Data collecting</h2>
+<p>US <code>pvol</code> data are collected by the National Oceanic and Atmospheric Administration (<a href="https://www.noaa.gov">NOAA</a>), which operates a network of approximately 160 Next Generation Weather Radar (NEXRAD), WSR-88D sites in the US and associated territories.</p>
 </div>
-<!-- References used in this document -->
-<div id="colophon" class="section level1 unnumbered">
-<h1>Colophon</h1>
-<p>Distributions of this data management plan:</p>
-<ul>
-<li>Latest version (website): <a href="https://enram.github.io/globam-dmp/" class="uri">https://enram.github.io/globam-dmp/</a></li>
-<li>Latest version (pdf): <a href="https://enram.github.io/globam-dmp/globam-dmp.pdf" class="uri">https://enram.github.io/globam-dmp/globam-dmp.pdf</a></li>
-<li>Periodically archived version (pdf): <em>to be deposited on Zenodo.org</em></li>
-</ul>
-<p>Suggested citation for the latest version:</p>
+<div id="pvol-us-access" class="section level2">
+<h2><span class="header-section-number">3.2</span> Access</h2>
+<p>Archived polar volumes (pvols) (called “level II data” in the US) are stored on various services:</p>
+<ol style="list-style-type: decimal">
+<li>Amazon S3, see <a href="https://registry.opendata.aws/noaa-nexrad/">NEXRAD on AWS</a>. Archived data are hosted in the <a href="https://noaa-nexrad-level2.s3.amazonaws.com">noaa-nexrad-level2</a> Amazon S3 bucket in the <code>us-east-1</code> AWS region. These data are made available 10-20 minutes lag relative to real-time. There is also a real-time data stream, for which scans have not been merged yet into polar volumes.</li>
+<li><a href="https://cloud.google.com/storage/docs/public-datasets/nexrad">Google Cloud</a>.</li>
+</ol>
+</div>
+<div id="license-1" class="section level2">
+<h2><span class="header-section-number">3.3</span> License</h2>
+<p>There are no restrictions on the use of these data.</p>
+</div>
+<div id="geographical-scope" class="section level2">
+<h2><span class="header-section-number">3.4</span> Geographical scope</h2>
+<p>The NEXRAD network covers continental US, Alaska, Hawaii, Guam, South Korea and Puerto Rico. Sites in use vary slightly over time, see <a href="https://www.roc.noaa.gov/wsr88d/Level_II/Level2Info.aspx">here</a> for more information, <a href="https://www.roc.noaa.gov/WSR88D/Maps.aspx">maps</a> here.</p>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="images/WSR-88DCONUSCoverage1000.jpg" alt="NEXRAD radar network in the lower 48 states" width="100%" />
+<p class="caption">
+Figure 3.1: NEXRAD radar network in the lower 48 states
+</p>
+</div>
+</div>
+<div id="temporal-scope-1" class="section level2">
+<h2><span class="header-section-number">3.5</span> Temporal scope</h2>
+<p>The archive spans from June 1991 to present. However, during this time significant changes have been made. A resolution increase was implemented in 2008-2009 (so-called superresolution data). Dual polarization capabilities were added in 2010-2013.</p>
+</div>
+<div id="format-file-names-1" class="section level2">
+<h2><span class="header-section-number">3.6</span> Format &amp; file names</h2>
+<p>See <a href="https://www.ncdc.noaa.gov/data-access/radar-data/radar-decoding">this page</a> for available decoding tools of the radar format. US <code>pvol</code> data can be read in <code>bioRad</code> with <a href="http://adokter.github.io/bioRad/reference/read_pvolfile.html"><code>read_pvolfile()</code></a>.</p>
+<p>From the AWS open data project <a href="https://docs.opendata.aws/noaa-nexrad/readme.html">documentation</a> for archive data:</p>
 <blockquote>
-<p>Desmet P, Nilsson C, Dokter A (2019) GloBAM Data Management Plan. Version 2019-06-29. <a href="https://enram.github.io/globam-dmp/" class="uri">https://enram.github.io/globam-dmp/</a></p>
+<p>Each volume scan file of archival data is available as an object in Amazon S3. The basic data format is:</p>
+<p><code>/&lt;Year&gt;/&lt;Month&gt;/&lt;Day&gt;/&lt;NEXRAD Station/&gt;/&lt;filename&gt;</code></p>
+<p>Where:</p>
+<ul>
+<li><code>&lt;Year&gt;</code> is the year the data was collected</li>
+<li><code>&lt;Month&gt;</code> is the month of the year the data was collected</li>
+<li><code>&lt;Day&gt;</code> is the day of the month the data was collected</li>
+<li><code>&lt;NEXRAD Station&gt;</code> is the NEXRAD ground station (map of ground stations)</li>
+<li><code>&lt;filename&gt;</code> is the name of the file containing the data. These are compressed files (compressed with gzip). The file name has more precise timestamp information.</li>
+</ul>
+<p>All files in the archive use the same compressed format (.gz). The data file names are, for example, <code>KAKQ20010101_080138.gz</code>. The file naming convention is:</p>
+<p><code>GGGGYYYYMMDD_TTTTTT</code></p>
+<p>Where:</p>
+<ul>
+<li><code>GGGG</code> = Ground station ID (map of ground stations)</li>
+<li><code>YYYY</code> = year</li>
+<li><code>MM</code> = month</li>
+<li><code>DD</code> = day</li>
+<li><code>TTTTTT</code> = time when data started to be collected (GMT)</li>
+</ul>
+<p>Note that the 2015 files have an additional field on the file name. It adds “_V06” to the end of the file name. An example is KABX20150303_001050_V06.gz.</p>
 </blockquote>
-<p>All versions are licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License (CC BY 4.0)</a>.</p>
+</div>
+<div id="quality-assurance" class="section level2">
+<h2><span class="header-section-number">3.7</span> Quality assurance</h2>
+<p>Unknown.</p>
+</div>
+<div id="storage-backup-1" class="section level2">
+<h2><span class="header-section-number">3.8</span> Storage &amp; backup</h2>
+<p>US <code>pvol</code> data are stored on AWS and other cloud services, see <a href="3_pvol_us.html#pvol-us-access">3.2</a>.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1_introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2_pvol_europe.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4_other_data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -199,7 +247,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/enram/globam-dmp/blob/master/index.Rmd",
+"link": "https://github.com/enram/globam-dmp/blob/master/src/3_pvol_us.Rmd",
 "text": "Edit"
 },
 "history": {

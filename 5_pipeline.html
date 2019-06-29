@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>GloBAM Data Management Plan</title>
-  <meta name="description" content="GloBAM Data Management Plan" />
+  <title>5 Processing pipeline | GloBAM Data Management Plan</title>
+  <meta name="description" content="5 Processing pipeline | GloBAM Data Management Plan" />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="GloBAM Data Management Plan" />
+  <meta property="og:title" content="5 Processing pipeline | GloBAM Data Management Plan" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="enram/globam-dmp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="GloBAM Data Management Plan" />
+  <meta name="twitter:title" content="5 Processing pipeline | GloBAM Data Management Plan" />
   
   
   
@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="1_introduction.html">
+<link rel="prev" href="4_other_data.html">
+<link rel="next" href="6_vp.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -140,36 +140,42 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">GloBAM Data Management Plan</h1>
-<p class="author"><em>Peter Desmet</em></p>
-<p class="author"><em>Cecilia Nilsson</em></p>
-<p class="author"><em>Adriaan Dokter</em></p>
-<p class="date"><em>2019-06-29</em></p>
+<div id="processing-pipeline" class="section level1">
+<h1><span class="header-section-number">5</span> Processing pipeline</h1>
+<p>This chapter describes the processing pipeline from <code>pvol</code> over <code>vp</code> to <code>vpts</code> data.</p>
+<div id="baltrad-pvol" class="section level2">
+<h2><span class="header-section-number">5.1</span> European <code>pvol</code></h2>
+<p><a href="http://baltrad.eu/">BALTRAD</a> collects <code>pvol</code> data for Europe. For <code>pvol</code> data to be available in BALTRAD, several conditions <a href="https://github.com/adokter/vol2bird/wiki/Radar-data-requirements-and-availability-for-ENRAM#future-radar-data-availability-for-enram">need to be met</a>:</p>
+<ol style="list-style-type: decimal">
+<li>A country should send both reflectivity and radial velocity data to the <a href="http://www.eumetnet.eu/opera">OPERA</a> data centre, which is called <a href="http://www.eumetnet.eu/odyssey-opera-data-centre">ODYSSEY</a>. While many countries are sending reflectivity data, radial velocities are still unavailable for many countries.</li>
+<li>ODYSSEY should forward these data to the BALTRAD datahub. It is standard policy to do so, but in practice data is not yet forwarded correctly for some radars/countries.</li>
+<li>Currently BALTRAD and ODYSSEY store data at a 15 minute interval, higher resolution data is not yet available.</li>
+</ol>
 </div>
-<!-- References used in this document -->
-<div id="colophon" class="section level1 unnumbered">
-<h1>Colophon</h1>
-<p>Distributions of this data management plan:</p>
-<ul>
-<li>Latest version (website): <a href="https://enram.github.io/globam-dmp/" class="uri">https://enram.github.io/globam-dmp/</a></li>
-<li>Latest version (pdf): <a href="https://enram.github.io/globam-dmp/globam-dmp.pdf" class="uri">https://enram.github.io/globam-dmp/globam-dmp.pdf</a></li>
-<li>Periodically archived version (pdf): <em>to be deposited on Zenodo.org</em></li>
-</ul>
-<p>Suggested citation for the latest version:</p>
-<blockquote>
-<p>Desmet P, Nilsson C, Dokter A (2019) GloBAM Data Management Plan. Version 2019-06-29. <a href="https://enram.github.io/globam-dmp/" class="uri">https://enram.github.io/globam-dmp/</a></p>
-</blockquote>
-<p>All versions are licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License (CC BY 4.0)</a>.</p>
+<div id="european-pvol-to-vp" class="section level2">
+<h2><span class="header-section-number">5.2</span> European <code>pvol</code> to <code>vp</code></h2>
+<p>A server at BALTRAD processes any incoming <code>pvol</code> data with <a href="https://github.com/adokter/vol2bird"><code>vol2bird</code></a>. This pipeline is maintained by Günther Haase (<a href="https://www.smhi.se/en/research/research-departments/atmospheric-remote-sensing/contact-us-1.4801">SMHI</a>).</p>
+<p>The resulting <code>vp</code> files are stored for 2 days on a private FTP server to which we have access. The used <code>vol2bird</code> version is stored in the metadata of the <code>vp</code> files and can differ over time. The latest files are created with <code>vol2bird 0.3.20</code> (last tested April 11, 2019).</p>
+</div>
+<div id="enram-pipeline" class="section level2">
+<h2><span class="header-section-number">5.3</span> <code>vp</code> archiving</h2>
+<p><strong>European</strong> <code>vp</code> data are archived daily by a pipeline running on Amazon Web Services (AWS) which transfers <code>vp</code> files from the BALTRAD FTP server to a public <a href="https://lw-enram.s3-eu-west-1.amazonaws.com">S3 bucket</a>. This pipeline is maintained by Stijn Van Hoey (<a href="https://twitter.com/oscibio">Open science lab for biodiversity</a>) and its code and documentation are available in <a href="https://github.com/enram/data-repository">this repository</a>. Note that any issues in the pipeline that are not resolved within 2 days (the time <code>vp</code> data are kept on the FTP server) <strong>can result in data loss</strong>.</p>
+<p>The pipeline also updates a <a href="https://lw-enram.s3-eu-west-1.amazonaws.com/coverage.csv">coverage file</a> and bundles <code>vp</code> files in monthly zips per radar (e.g. <a href="https://lw-enram.s3-eu-west-1.amazonaws.com/be/jab/2019/bejab201904.zip"><code>bejab201904.zip</code></a>). A <a href="http://enram.github.io/data-repository/">public website</a> allows easier file navigation of the S3 bucket.</p>
+<p><strong>United States</strong> <code>vp</code> data are currently not archived. See <a href="https://github.com/enram/globam-dmp/issues/19">issue</a>.</p>
+</div>
+<div id="vp-to-vpts" class="section level2">
+<h2><span class="header-section-number">5.4</span> <code>vp</code> to <code>vpts</code></h2>
+<p>Not yet defined, but likely part of the ENRAM pipeline (see <a href="5_pipeline.html#enram-pipeline">5.3</a>).</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1_introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="4_other_data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6_vp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -199,7 +205,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/enram/globam-dmp/blob/master/index.Rmd",
+"link": "https://github.com/enram/globam-dmp/blob/master/src/5_pipeline.Rmd",
 "text": "Edit"
 },
 "history": {

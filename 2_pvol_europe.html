@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 European radar data (pvol) | GloBAM Data Management Plan</title>
+  <meta name="description" content="2 European radar data (pvol) | GloBAM Data Management Plan" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 European radar data (pvol) | GloBAM Data Management Plan" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="enram/globam-dmp" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 European radar data (pvol) | GloBAM Data Management Plan" />
+  
+  
+  
+
+<meta name="author" content="Peter Desmet" />
+<meta name="author" content="Cecilia Nilsson" />
+<meta name="author" content="Adriaan Dokter" />
+
+
+<meta name="date" content="2019-06-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1_introduction.html">
+<link rel="next" href="3_pvol_us.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Colophon</a></li>
+<li class="chapter" data-level="1" data-path="1_introduction.html"><a href="1_introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1_introduction.html"><a href="1_introduction.html#research-purpose"><i class="fa fa-check"></i><b>1.1</b> Research purpose</a></li>
+<li class="chapter" data-level="1.2" data-path="1_introduction.html"><a href="1_introduction.html#data-manager"><i class="fa fa-check"></i><b>1.2</b> Data manager</a></li>
+<li class="chapter" data-level="1.3" data-path="1_introduction.html"><a href="1_introduction.html#how-this-dmp-is-maintained"><i class="fa fa-check"></i><b>1.3</b> How this DMP is maintained</a></li>
+</ul></li>
+<li class="part"><span><b>Source data</b></span></li>
+<li class="chapter" data-level="2" data-path="2_pvol_europe.html"><a href="2_pvol_europe.html"><i class="fa fa-check"></i><b>2</b> European radar data (<code>pvol</code>)</a><ul>
+<li class="chapter" data-level="2.1" data-path="2_pvol_europe.html"><a href="2_pvol_europe.html#data-collecting"><i class="fa fa-check"></i><b>2.1</b> Data collecting</a></li>
+<li class="chapter" data-level="2.2" data-path="2_pvol_europe.html"><a href="2_pvol_europe.html#access"><i class="fa fa-check"></i><b>2.2</b> Access</a></li>
+<li class="chapter" data-level="2.3" data-path="2_pvol_europe.html"><a href="2_pvol_europe.html#license"><i class="fa fa-check"></i><b>2.3</b> License</a></li>
+<li class="chapter" data-level="2.4" data-path="2_pvol_europe.html"><a href="2_pvol_europe.html#opera-db"><i class="fa fa-check"></i><b>2.4</b> Geographical scope</a></li>
+<li class="chapter" data-level="2.5" data-path="2_pvol_europe.html"><a href="2_pvol_europe.html#temporal-scope"><i class="fa fa-check"></i><b>2.5</b> Temporal scope</a></li>
+<li class="chapter" data-level="2.6" data-path="2_pvol_europe.html"><a href="2_pvol_europe.html#format-file-names"><i class="fa fa-check"></i><b>2.6</b> Format &amp; file names</a></li>
+<li class="chapter" data-level="2.7" data-path="2_pvol_europe.html"><a href="2_pvol_europe.html#pvol-eu-qa"><i class="fa fa-check"></i><b>2.7</b> Quality assurance</a></li>
+<li class="chapter" data-level="2.8" data-path="2_pvol_europe.html"><a href="2_pvol_europe.html#storage-backup"><i class="fa fa-check"></i><b>2.8</b> Storage &amp; backup</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3_pvol_us.html"><a href="3_pvol_us.html"><i class="fa fa-check"></i><b>3</b> US radar data (<code>pvol</code>)</a><ul>
+<li class="chapter" data-level="3.1" data-path="3_pvol_us.html"><a href="3_pvol_us.html#data-collecting-1"><i class="fa fa-check"></i><b>3.1</b> Data collecting</a></li>
+<li class="chapter" data-level="3.2" data-path="3_pvol_us.html"><a href="3_pvol_us.html#pvol-us-access"><i class="fa fa-check"></i><b>3.2</b> Access</a></li>
+<li class="chapter" data-level="3.3" data-path="3_pvol_us.html"><a href="3_pvol_us.html#license-1"><i class="fa fa-check"></i><b>3.3</b> License</a></li>
+<li class="chapter" data-level="3.4" data-path="3_pvol_us.html"><a href="3_pvol_us.html#geographical-scope"><i class="fa fa-check"></i><b>3.4</b> Geographical scope</a></li>
+<li class="chapter" data-level="3.5" data-path="3_pvol_us.html"><a href="3_pvol_us.html#temporal-scope-1"><i class="fa fa-check"></i><b>3.5</b> Temporal scope</a></li>
+<li class="chapter" data-level="3.6" data-path="3_pvol_us.html"><a href="3_pvol_us.html#format-file-names-1"><i class="fa fa-check"></i><b>3.6</b> Format &amp; file names</a></li>
+<li class="chapter" data-level="3.7" data-path="3_pvol_us.html"><a href="3_pvol_us.html#quality-assurance"><i class="fa fa-check"></i><b>3.7</b> Quality assurance</a></li>
+<li class="chapter" data-level="3.8" data-path="3_pvol_us.html"><a href="3_pvol_us.html#storage-backup-1"><i class="fa fa-check"></i><b>3.8</b> Storage &amp; backup</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4_other_data.html"><a href="4_other_data.html"><i class="fa fa-check"></i><b>4</b> Other external data</a><ul>
+<li class="chapter" data-level="4.1" data-path="4_other_data.html"><a href="4_other_data.html#wind"><i class="fa fa-check"></i><b>4.1</b> Wind</a></li>
+<li class="chapter" data-level="4.2" data-path="4_other_data.html"><a href="4_other_data.html#land-use"><i class="fa fa-check"></i><b>4.2</b> Land use</a></li>
+<li class="chapter" data-level="4.3" data-path="4_other_data.html"><a href="4_other_data.html#artificial-light"><i class="fa fa-check"></i><b>4.3</b> Artificial light</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4_other_data.html"><a href="4_other_data.html#sources"><i class="fa fa-check"></i><b>4.3.1</b> Sources</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4_other_data.html"><a href="4_other_data.html#wind-energy-installations"><i class="fa fa-check"></i><b>4.4</b> Wind energy installations</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="4_other_data.html"><a href="4_other_data.html#sources-1"><i class="fa fa-check"></i><b>4.4.1</b> Sources</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Produced data</b></span></li>
+<li class="chapter" data-level="5" data-path="5_pipeline.html"><a href="5_pipeline.html"><i class="fa fa-check"></i><b>5</b> Processing pipeline</a><ul>
+<li class="chapter" data-level="5.1" data-path="5_pipeline.html"><a href="5_pipeline.html#baltrad-pvol"><i class="fa fa-check"></i><b>5.1</b> European <code>pvol</code></a></li>
+<li class="chapter" data-level="5.2" data-path="5_pipeline.html"><a href="5_pipeline.html#european-pvol-to-vp"><i class="fa fa-check"></i><b>5.2</b> European <code>pvol</code> to <code>vp</code></a></li>
+<li class="chapter" data-level="5.3" data-path="5_pipeline.html"><a href="5_pipeline.html#enram-pipeline"><i class="fa fa-check"></i><b>5.3</b> <code>vp</code> archiving</a></li>
+<li class="chapter" data-level="5.4" data-path="5_pipeline.html"><a href="5_pipeline.html#vp-to-vpts"><i class="fa fa-check"></i><b>5.4</b> <code>vp</code> to <code>vpts</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6_vp.html"><a href="6_vp.html"><i class="fa fa-check"></i><b>6</b> Vertical profiles of aerial migrants data (<code>vp</code>)</a><ul>
+<li class="chapter" data-level="6.1" data-path="6_vp.html"><a href="6_vp.html#source"><i class="fa fa-check"></i><b>6.1</b> Source</a></li>
+<li class="chapter" data-level="6.2" data-path="6_vp.html"><a href="6_vp.html#license-2"><i class="fa fa-check"></i><b>6.2</b> License</a></li>
+<li class="chapter" data-level="6.3" data-path="6_vp.html"><a href="6_vp.html#format"><i class="fa fa-check"></i><b>6.3</b> Format</a></li>
+<li class="chapter" data-level="6.4" data-path="6_vp.html"><a href="6_vp.html#geographical-scope-1"><i class="fa fa-check"></i><b>6.4</b> Geographical scope</a></li>
+<li class="chapter" data-level="6.5" data-path="6_vp.html"><a href="6_vp.html#temporal-scope-2"><i class="fa fa-check"></i><b>6.5</b> Temporal scope</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7_vpts.html"><a href="7_vpts.html"><i class="fa fa-check"></i><b>7</b> Time series of vertical profiles data (<code>vpts</code>)</a><ul>
+<li class="chapter" data-level="7.1" data-path="7_vpts.html"><a href="7_vpts.html#license-3"><i class="fa fa-check"></i><b>7.1</b> License</a></li>
+<li class="chapter" data-level="7.2" data-path="7_vpts.html"><a href="7_vpts.html#source-1"><i class="fa fa-check"></i><b>7.2</b> Source</a></li>
+<li class="chapter" data-level="7.3" data-path="7_vpts.html"><a href="7_vpts.html#coverage"><i class="fa fa-check"></i><b>7.3</b> Coverage</a></li>
+<li class="chapter" data-level="7.4" data-path="7_vpts.html"><a href="7_vpts.html#format-1"><i class="fa fa-check"></i><b>7.4</b> Format</a></li>
+</ul></li>
+<li class="part"><span><b>Publishing &amp; preservation</b></span></li>
+<li class="chapter" data-level="8" data-path="8_open_data.html"><a href="8_open_data.html"><i class="fa fa-check"></i><b>8</b> Open data</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GloBAM Data Management Plan</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="european-radar-data-pvol" class="section level1">
+<h1><span class="header-section-number">2</span> European radar data (<code>pvol</code>)</h1>
+<p>This chapter describes polar volume (<code>pvol</code>) data from European weather radars: one the main data sources for GloBAM.</p>
+<div id="data-collecting" class="section level2">
+<h2><span class="header-section-number">2.1</span> Data collecting</h2>
+<p>European <code>pvol</code> data are collected by weather radars from <strong>national weather services</strong> in Europe.</p>
+</div>
+<div id="access" class="section level2">
+<h2><span class="header-section-number">2.2</span> Access</h2>
+<p>The national weather services have different approaches in processing, archiving and providing access to <code>pvol</code> data (from restricted access to open data). Even though some GloBAM partners (e.g. the University of Amsterdam) have archived subsets of these data for research use, the scattered scope and access to European <code>pvol</code> data is a serious barrier to GloBAM, which ideally requires access to all European <code>pvol</code> data using the same protocol.</p>
+<p>The best source for consolidated <code>pvol</code> data is therefore <strong><a href="http://baltrad.eu/">BALTRAD</a></strong>, managed by <a href="https://www.smhi.se/en/research/research-departments/atmospheric-remote-sensing/contact-us-1.4801">SMHI</a> (contact person: Günther Haase). <code>pvol</code> data are archived there, but access to that server is restricted to SMHI. See <a href="5_pipeline.html#baltrad-pvol">5.1</a> for details on how <code>pvol</code> data are submitted to this archive.</p>
+<p>The rest of this chapter discusses the specifics of the BALTRAD archive.</p>
+</div>
+<div id="license" class="section level2">
+<h2><span class="header-section-number">2.3</span> License</h2>
+<p>European radar data exchange is coordinated by the <em>European Operational Program for Exchange of Weather Radar Information (<a href="http://eumetnet.eu/activities/observations-programme/current-activities/opera/">EUMETNET/OPERA</a>)</em>. GloBAM has access to these data via the <em>EIG EUMETNET license agreement for Research use of OPERA data</em>, which grants a specific list of people (involved in ENRAM and GloBAM) access to radar data from selected countries under the following conditions (excerpt):</p>
+<blockquote>
+<p>The Licensor grants the Licensees a non-Exclusive license to use intellectual property belonging to the EUMETNET members as defined below [ … ]</p>
+<p>The OPERA Members Data will be provided for use within the ENRAM Project for the purpose of extracting animal migration information for scientific research.</p>
+<p>The Grant of this License does not permit use of the OPERA Members Data licensed to be used for commercial purposes or exploitation for profit.</p>
+</blockquote>
+<p>The license agreement allows us to access European <code>pvol</code> data for the sole purpose of extracting animal migration information for scientific research, which is what GloBAM intends to do. Storing, sharing or other use of these data is <strong>restricted</strong> and requires prior written consent of the Licensor.</p>
+</div>
+<div id="opera-db" class="section level2">
+<h2><span class="header-section-number">2.4</span> Geographical scope</h2>
+<p>OPERA manages a list of radars, their unique codes (e.g. <code>odimcode</code>) and associated metadata. The list currently contains 232 radars. This <strong>OPERA database</strong> is available as <a href="http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/index.html">an interactive map</a> derived from <a href="http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/OPERA_RADARS_DB.json">a json file containing the metadata</a>. To keep track of changes, we archive this <code>json</code> on <a href="https://github.com/enram/globam-dmp/blob/master/data/OPERA_RADARS_DB.json">GitHub</a> every time we update the DMP.</p>
+<p>The license agreement allows access to data from 19 countries:</p>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">country</th>
+<th align="left">iso_code</th>
+<th align="right">radars</th>
+<th align="right">operational</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Austria</td>
+<td align="left">AT</td>
+<td align="right">5</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Belgium</td>
+<td align="left">BE</td>
+<td align="right">3</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Croatia</td>
+<td align="left">HR</td>
+<td align="right">5</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Czechia</td>
+<td align="left">CZ</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Denmark</td>
+<td align="left">DK</td>
+<td align="right">5</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Estonia</td>
+<td align="left">EE</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Finland</td>
+<td align="left">FI</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">France</td>
+<td align="left">FR</td>
+<td align="right">31</td>
+<td align="right">25</td>
+</tr>
+<tr class="odd">
+<td align="left">Germany</td>
+<td align="left">DE</td>
+<td align="right">20</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
+<td align="left">Netherlands</td>
+<td align="left">NL</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Norway</td>
+<td align="left">NO</td>
+<td align="right">11</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">Poland</td>
+<td align="left">PL</td>
+<td align="right">8</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Portugal</td>
+<td align="left">PT</td>
+<td align="right">4</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Slovakia</td>
+<td align="left">SK</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Slovenia</td>
+<td align="left">SI</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Spain</td>
+<td align="left">ES</td>
+<td align="right">15</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">Sweden</td>
+<td align="left">SE</td>
+<td align="right">12</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Switzerland</td>
+<td align="left">CH</td>
+<td align="right">5</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">United Kingdom</td>
+<td align="left">GB</td>
+<td align="right">16</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="left">-</td>
+<td align="right">163</td>
+<td align="right">152</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The BALTRAD archive does not contain <code>pvol</code> data for all of these radars/countries however (see <a href="5_pipeline.html#baltrad-pvol">5.1</a>). Its precise geographical scope is currently <strong>unknown</strong>, but <a href="https://github.com/enram/globam-dmp/issues/31">being gathered</a>.</p>
+</div>
+<div id="temporal-scope" class="section level2">
+<h2><span class="header-section-number">2.5</span> Temporal scope</h2>
+<p>The temporal scope of the BALTRAD archive is currently <strong>unknown</strong>, but <a href="https://github.com/enram/globam-dmp/issues/31">being gathered</a>. GloBAM needs a <strong>2-3 year archive</strong> of European <code>pvol</code> and derived <code>vp</code> data to tackle its research questions. By starting from a <code>pvol</code> archive, the generation of <code>vp</code> data can be reproduced if need be, e.g. to make sure adequate <code>vol2bird</code> settings/versions are used.</p>
+<p>The <code>pvol</code> archive at BALTRAD is likely to be the best source for this archive, but its scope and quality need to be assessed before we can proceed, see <a href="2_pvol_europe.html#pvol-eu-qa">2.7</a>.</p>
+</div>
+<div id="format-file-names" class="section level2">
+<h2><span class="header-section-number">2.6</span> Format &amp; file names</h2>
+<p>The delivery of European <code>pvol</code> data is defined in the license agreement:</p>
+<blockquote>
+<p>The Licensor will make the OPERA Members Data available to the Licensees in accordance to the following data description and technical specifications:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Single-site polar volumes containing reflectivity, optionally also Doppler velocity, uncorrected reflectivity and dual-pol parameters. Data model ODIM as described in OPERA pages of the EUMETNET website (<a href="http://www.eumetnet.eu" class="uri">http://www.eumetnet.eu</a>)</li>
+<li>Update frequency – 15 minutes</li>
+<li>Issue time – up to 120 minutes after data time</li>
+<li>Format: HDF5</li>
+<li>Delivery method: FTP via Internet using an ad hoc server. A username and password will be created for ENRAM.</li>
+<li>Availability of OPERA Members Data will be on the basis of reasonable endeavour</li>
+<li>Support: OPERA documents are available from the EUMETNET website’s OPERA pages (<a href="http://www.eumetnet.eu" class="uri">http://www.eumetnet.eu</a>). OPERA Program Manager will manage technical questions related to the OPERA Products but may address more complicated issues to a team member who may charge a fee.</li>
+</ol>
+</blockquote>
+<p>Data is thus provided for every 15 minutes as <code>hdf5</code> in the <a href="https://github.com/adokter/vol2bird/blob/master/doc/ODIM_H5_v23.pdf">OPERA ODIM_h5 format</a>. These files can be read in <code>bioRad</code> with <a href="http://adokter.github.io/bioRad/reference/read_pvolfile.html"><code>read_pvolfile()</code></a>.</p>
+<p>File names are generally of the format <code>bejab_pvol_20190620T055500Z_0x9.h5</code>, where:</p>
+<ul>
+<li><code>be</code>: two-letter code (ISO 3166-1 alpha-2)</li>
+<li><code>jab</code>: three-letter code (last 3 letters from the ODIM code, see <a href="2_pvol_europe.html#opera-db">2.4</a>)</li>
+<li><code>_pvol_</code>: indication that this is a <code>pvol</code> data file</li>
+<li><code>20190620</code>: date in <code>yyyymmdd</code> format</li>
+<li><code>T055000Z</code>: time in <code>hhmmss</code> format + timezone (<code>Z</code> for UTC time)</li>
+<li><code>_0x9</code>: suffix (to be ignored)</li>
+</ul>
+</div>
+<div id="pvol-eu-qa" class="section level2">
+<h2><span class="header-section-number">2.7</span> Quality assurance</h2>
+<p>The scope and quality of the BALTRAD archive need to be assessed. Tasks for this are listed <a href="https://github.com/enram/globam-dmp/milestone/1">here</a> and include:</p>
+<ol style="list-style-type: decimal">
+<li>Get a file listing for <code>pvol</code> archive</li>
+<li>Select subsets: first 2 days of data per radar/month for 2016, 2017, 2018 (72 days): either pvol or pre-merged scans</li>
+<li>Transfer subsets to accessible FTP server</li>
+<li>Merge to pvol (test 1)</li>
+<li>Process with <code>vol2bird</code> to <code>vp</code> (test 2)</li>
+<li>Store output <code>vp</code> files</li>
+<li>Visual control of <code>vp</code> (test 3)</li>
+</ol>
+</div>
+<div id="storage-backup" class="section level2">
+<h2><span class="header-section-number">2.8</span> Storage &amp; backup</h2>
+<p>The BALTRAD archive is stored on a restricted FTP server. It is maintained by SMHI.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1_introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3_pvol_us.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/enram/globam-dmp/blob/master/src/2_pvol_europe.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["globam-dmp.pdf"],
+"toc": {
+"collapse": "section"
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>
