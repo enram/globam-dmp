@@ -4,21 +4,17 @@ This chapter describes vertical profiles of aerial migrants/biological signals (
 
 ## Source
 
-**European** `vp` data are generated daily from `pvol` data on the BALTRAD server and then transferred to the public [ENRAM data repository][enram-repo] (see \@ref(enram-pipeline)). **United States** `vp` data are being generated for the 25 year `pvol` archive, but not yet publicly archived.
+**European** `vp` data are generated daily from `pvol` data on the BALTRAD server (see \@ref(baltrad-vp-pipeline)) and then transferred to the public ENRAM data repository (see \@ref(enram-pipeline)). **United States** `vp` data are being generated for the 25 year `pvol` archive, but not yet publicly archived.
 
-`vp` files can be downloaded from the ENRAM data repository individually, as monthly zips, or automatically in `bioRad` with  [`download_vpfiles()`](http://adokter.github.io/bioRad/reference/download_vpfiles.html).
+`vp` files can be downloaded from the [ENRAM data repository][enram-repo] individually, as monthly zips, or automatically in `bioRad` with  [`download_vpfiles()`](http://adokter.github.io/bioRad/reference/download_vpfiles.html). 
 
 ## License
 
-Data in the [ENRAM data repository](enram-repo) are available as **open data** under a [Creative Commons Zero waiver](https://creativecommons.org/publicdomain/zero/1.0/).
+Data in the [ENRAM data repository][enram-repo] are available as **open data** under a [Creative Commons Zero waiver][cc0].
 
 For the **European data** it is recommended to acknowledge EUMETNET/OPERA in publications resulting from the use of these data as follows:
 
 > We acknowledge the [European Operational Program for Exchange of Weather Radar Information (EUMETNET/OPERA)](http://eumetnet.eu/activities/observations-programme/current-activities/opera/) for providing access to European radar data, faciliated through a research-only license agreement between EUMETNET/OPERA members and ENRAM.
-
-## Format
-
-A `vp` file is generated for each originating `pvol` file and thus has the same granularity. `vp` data are stored as `hdf5` files in the [ODIM bird profile format specification](https://github.com/adokter/vol2bird/wiki/ODIM-bird-profile-format-specification). These files can be read in `bioRad` with [`read_vpfiles()`](http://adokter.github.io/bioRad/reference/read_vpfiles.html).
 
 ## Geographical scope
 
@@ -46,4 +42,20 @@ vp_coverage %>%
 
 ## Temporal scope
 
-Data transfer to the [ENRAM data repository][enram-repo] become more or less operational in March 2018 (with a gap in July 2018). Data from 2016 were uploaded for the European flyway study [Nilsson et al. 2018](https://doi.org/10.1111/ecog.04003).
+Data transfer to the [ENRAM data repository][enram-repo] become more or less operational in March 2018 (with a gap in July 2018). Data from 2016 were uploaded for the European flyway study [Nilsson et al. 2019](https://doi.org/10.1111/ecog.04003).
+
+## Format {#vp-format}
+
+A `vp` file is generated for each originating `pvol` file and thus has the same granularity. `vp` data are stored as `hdf5` files in the [ODIM bird profile format specification](https://github.com/adokter/vol2bird/wiki/ODIM-bird-profile-format-specification). These files can be read in `bioRad` with [`read_vpfiles()`](http://adokter.github.io/bioRad/reference/read_vpfiles.html).
+
+## File name conventions
+
+File names follow the same format as `pvol` files (see \@ref(pvol-eu-format)), but with `_vp_` (e.g. `bejab_vp_20190620T055500Z_0x9.h5`). The directory structure of the [ENRAM data repository][enram-repo] is [documented here](https://github.com/enram/data-repository#use).
+
+## Quality assurance
+
+To be defined.
+
+## Storage & backup
+
+European `vp` data are stored on AWS (see \@ref(enram-vp-pipeline)). Each file transferred to the S3 bucket is also backed up in a second S3 bucket.
