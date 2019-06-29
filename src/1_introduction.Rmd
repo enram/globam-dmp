@@ -10,11 +10,11 @@ For more information on GloBAM, see the [project website](http://globam.science)
 
 ## Data manager
 
-...
+[Peter Desmet](http://orcid.org/0000-0002-8442-8025) is responsible for data management and DMP maintenance in GloBAM. He is also leading _WP1 - Data infrastructure_. Peter works as open data coordinator for the [Open science lab for biodiversity](https://twitter.com/oscibio) at the [Research Institute for Nature and Forest (INBO)](http://www.inbo.be/). He and his team have extensive expertise and experience with data management and open data publication meeting FAIR principles.
 
 ## How this DMP is maintained
 
 1. This DMP is maintained and versioned on GitHub at <https://github.com/enram/globam-dmp/>.
-2. Each chapter is an [R Markdown](https://rmarkdown.rstudio.com/) file (`Rmd`) in the `src` directory of that GitHub repository. You can access it directly by clicking the pencil icon in the top navigation of this website.
+2. Each chapter is an [R Markdown](https://rmarkdown.rstudio.com/) file (`Rmd`) in the `src` directory of that GitHub repository. You can access it directly by clicking the pencil icon in the top navigation of the website version of this DMP.
 3. Changes to the R Markdown files can be made by contributors to the GitHub repository or suggested by anyone as pull requests. Textual changes can be done directly on GitHub, code changes are better tested in RStudio first.
-4. Accepted changes (i.e. changes to the `master` branch) will trigger an [automatic build procedure](https://travis-ci.org/enram/globam-dmp) that will generate a new version of this DMP using the R package [bookdown](https://bookdown.org/yihui/bookdown/). The date of the build is used as the version number.
+4. Accepted changes (i.e. changes to the `master` branch) will trigger an [automatic build procedure](https://travis-ci.org/enram/globam-dmp) that will generate a new version of the DMP using the R package [bookdown](https://bookdown.org/yihui/bookdown/). The date of the build is used as the version number.
