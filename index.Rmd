@@ -42,6 +42,9 @@ library(jsonlite)       # To read json
 <!-- References used in this document -->
 
 [enram-repo]: http://enram.github.io/data-repository/
+[oscibio]: https://twitter.com/oscibio
+[nilsson_2018_zenodo]: https://doi.org/10.5281/zenodo.1172801
+[cc0]: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Colophon {-}
 
