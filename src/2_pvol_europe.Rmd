@@ -72,7 +72,7 @@ The BALTRAD archive does not contain `pvol` data for all of these radars/countri
 
 The temporal scope of the BALTRAD archive is currently **unknown**, but [being gathered](https://github.com/enram/globam-dmp/issues/31). GloBAM needs a **2-3 year archive** of European `pvol` and derived `vp` data to tackle its research questions. By starting from a `pvol` archive, the generation of `vp` data can be reproduced if need be, e.g. to make sure adequate `vol2bird` settings/versions are used.
 
-The `pvol` archive at BALTRAD is likely to be the best source for this archive, but its scope and quality need to be assessed before we can proceed, see \@ref(baltrad-qa).
+The `pvol` archive at BALTRAD is likely to be the best source for this archive, but its scope and quality need to be assessed before we can proceed, see \@ref(pvol-eu-qa).
 
 ## Format & file names
 
@@ -99,7 +99,7 @@ File names are generally of the format `bejab_pvol_20190620T055500Z_0x9.h5`, whe
 - `T055000Z`: time in `hhmmss` format + timezone (`Z` for UTC time)
 - `_0x9`: suffix (to be ignored)
 
-## Quality assurance {#baltrad-qa}
+## Quality assurance {#pvol-eu-qa}
 
 The scope and quality of the BALTRAD archive need to be assessed. Tasks for this are listed [here](https://github.com/enram/globam-dmp/milestone/1) and include:
 

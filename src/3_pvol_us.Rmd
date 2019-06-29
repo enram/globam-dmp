@@ -1,19 +1,38 @@
 # US radar data (`pvol`)
 
-This chapter describes polar volume (`pvol`) data from weather radars in the United States. The National Oceanic and Atmospheric Administration ([NOAA](https://www.noaa.gov)) operates a network of approximately 160 Next Generation Weather Radar (NEXRAD), WSR-88D sites in the US and associated territories. 
+This chapter describes polar volume (`pvol`) data from weather radars in the United States: one the main data sources for GloBAM.
 
-## Source
+## Data collecting
+
+US `pvol` data are collected by the National Oceanic and Atmospheric Administration ([NOAA](https://www.noaa.gov)), which operates a network of approximately 160 Next Generation Weather Radar (NEXRAD), WSR-88D sites in the US and associated territories.
+
+## Access {#pvol-us-access} 
 
 Archived polar volumes (pvols) (called “level II data” in the US) are stored on various services:
 
-1. Amazon S3, see [NEXRAD on AWS](https://registry.opendata.aws/noaa-nexrad/). Archived data are hosted in the [noaa-nexrad-level2](https://noaa-nexrad-level2.s3.amazonaws.com) Amazon S3 bucket in the us-east-1 AWS region. These data are made available 10-20 minutes lag relative to real-time. There is also a real-time data stream, for which scans have not been merged yet into polar volumes.
-2. Google Cloud, see https://cloud.google.com/storage/docs/public-datasets/nexrad
+1. Amazon S3, see [NEXRAD on AWS](https://registry.opendata.aws/noaa-nexrad/). Archived data are hosted in the [noaa-nexrad-level2](https://noaa-nexrad-level2.s3.amazonaws.com) Amazon S3 bucket in the `us-east-1` AWS region. These data are made available 10-20 minutes lag relative to real-time. There is also a real-time data stream, for which scans have not been merged yet into polar volumes.
+2. [Google Cloud](https://cloud.google.com/storage/docs/public-datasets/nexrad).
 
 ## License
 
-There are no restrictions on the use of this data.
+There are no restrictions on the use of these data.
 
-## Format
+## Geographical scope
+
+The NEXRAD network covers continental US, Alaska, Hawaii, Guam, South Korea and Puerto Rico. Sites in use vary slightly over time, see [here](https://www.roc.noaa.gov/wsr88d/Level_II/Level2Info.aspx) for more information, [maps](https://www.roc.noaa.gov/WSR88D/Maps.aspx) here.
+
+```{r fig.cap="NEXRAD radar network in the lower 48 states", out.width="100%"}
+# Source: https://upload.wikimedia.org/wikipedia/commons/0/01/WSR-88DCONUSCoverage1000.jpg
+knitr::include_graphics(path = here("images", "WSR-88DCONUSCoverage1000.jpg"))
+```
+
+## Temporal scope
+
+The archive spans from June 1991 to present. However, during this time significant changes have been made. A resolution increase was implemented in 2008-2009 (so-called superresolution data). Dual polarization capabilities were added in 2010-2013.
+
+## Format & file names
+
+See [this page](https://www.ncdc.noaa.gov/data-access/radar-data/radar-decoding) for available decoding tools of the radar format. US `pvol` data can be read in `bioRad` with [`read_pvolfile()`](http://adokter.github.io/bioRad/reference/read_pvolfile.html).
 
 From the AWS open data project [documentation](https://docs.opendata.aws/noaa-nexrad/readme.html) for archive data:
 
@@ -43,17 +62,10 @@ From the AWS open data project [documentation](https://docs.opendata.aws/noaa-ne
 > 
 > Note that the 2015 files have an additional field on the file name. It adds “_V06” to the end of the file name. An example is KABX20150303_001050_V06.gz.
 
-See https://www.ncdc.noaa.gov/data-access/radar-data/radar-decoding for available decoding tools of the radar format.
+## Quality assurance
 
-## Geographical scope
+Unknown.
 
-The NEXRAD network covers continental US, Alaska, Hawaii, Guam, South Korea and Puerto Rico. Sites in use vary slightly over time, see [here](https://www.roc.noaa.gov/wsr88d/Level_II/Level2Info.aspx) for more information, [maps](https://www.roc.noaa.gov/WSR88D/Maps.aspx) here.
+## Storage & backup
 
-```{r fig.cap="NEXRAD radar network in the lower 48 states", out.width="100%"}
-# Source: https://upload.wikimedia.org/wikipedia/commons/0/01/WSR-88DCONUSCoverage1000.jpg
-knitr::include_graphics(path = here("images", "WSR-88DCONUSCoverage1000.jpg"))
-```
-
-## Temporal scope
-
-The archive spans from June 1991 to present. However, during this time significant changes have been made. A resolution increase was implemented in 2008-2009 (so-called superresolution data). Dual polarization capabilities were added in 2010-2013.
+US `pvol` data are stored on AWS and other cloud services, see \@ref(pvol-us-access).
