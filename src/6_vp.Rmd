@@ -1,5 +1,3 @@
-# (PART\*) Produced data {-}
-
 # Vertical profiles of aerial migrants data (`vp`)
 
 This chapter describes vertical profiles of aerial migrants/biological signals (`vp`) data for Europe and the United States. Vertical profiles contain the speed, direction and density of aerial migrants at different altitudes for a specific radar location and time, and form the source data for GloBAM specifically and aeroecological research in general.

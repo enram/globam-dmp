@@ -11,10 +11,10 @@ rmd_files: [
   src/2_pvol_europe.Rmd,
   src/3_pvol_us.Rmd,
   src/4_other_data.Rmd,
-  src/5_vp.Rmd,
-  src/6_vpts.Rmd,
-  src/7_open_data.Rmd,
-  src/8_software.Rmd
+  src/5_pipeline.Rmd,
+  src/6_vp.Rmd,
+  src/7_vpts.Rmd,
+  src/8_open_data.Rmd
 ]
 
 # All other settings are defined in index.Rmd
