@@ -43,6 +43,8 @@ library(jsonlite)       # To read json
 
 [enram-repo]: http://enram.github.io/data-repository/
 
+# Colophon {-}
+
 Distributions of this data management plan:
 
 - Latest version (website): <https://enram.github.io/globam-dmp/>
