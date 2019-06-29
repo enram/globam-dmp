@@ -1,14 +1,10 @@
 # US radar data (`pvol`)
 
-This chapter describes polar volume (`pvol`) data from weather radars in the United States: one the main data sources for GloBAM.
+This chapter describes polar volume (`pvol`) data from weather radars in the United States. It is one the main data sources for GloBAM.
 
-## Data collecting
+## Source {#pvol-us-source}
 
-US `pvol` data are collected by the National Oceanic and Atmospheric Administration ([NOAA](https://www.noaa.gov)), which operates a network of approximately 160 Next Generation Weather Radar (NEXRAD), WSR-88D sites in the US and associated territories.
-
-## Access {#pvol-us-access} 
-
-Archived polar volumes (pvols) (called “level II data” in the US) are stored on various services:
+US `pvol` data are collected by the National Oceanic and Atmospheric Administration ([NOAA](https://www.noaa.gov)), which operates a network of approximately 160 Next Generation Weather Radar (NEXRAD), WSR-88D sites in the US and associated territories. Archived polar volumes (pvols) (called “level II data” in the US) are stored on various services:
 
 1. Amazon S3, see [NEXRAD on AWS](https://registry.opendata.aws/noaa-nexrad/). Archived data are hosted in the [noaa-nexrad-level2](https://noaa-nexrad-level2.s3.amazonaws.com) Amazon S3 bucket in the `us-east-1` AWS region. These data are made available 10-20 minutes lag relative to real-time. There is also a real-time data stream, for which scans have not been merged yet into polar volumes.
 2. [Google Cloud](https://cloud.google.com/storage/docs/public-datasets/nexrad).

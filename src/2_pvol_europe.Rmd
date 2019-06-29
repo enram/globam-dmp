@@ -2,17 +2,13 @@
 
 # European radar data (`pvol`)
 
-This chapter describes polar volume (`pvol`) data from European weather radars: one the main data sources for GloBAM.
+This chapter describes polar volume (`pvol`) data from European weather radars. It is one the main data sources for GloBAM.
 
-## Data collecting
+## Source
 
-European `pvol` data are collected by weather radars from **national weather services** in Europe.
+European `pvol` data are collected by weather radars from **national weather services** in Europe. They have different approaches in processing, archiving and providing access to `pvol` data (from restricted access to open data). Even though some GloBAM partners (e.g. the University of Amsterdam) have archived subsets of these data for research use, the scattered scope and access to European `pvol` data is a serious barrier to GloBAM, which ideally requires access to all European `pvol` data using the same protocol.
 
-## Access
-
-The national weather services have different approaches in processing, archiving and providing access to `pvol` data (from restricted access to open data). Even though some GloBAM partners (e.g. the University of Amsterdam) have archived subsets of these data for research use, the scattered scope and access to European `pvol` data is a serious barrier to GloBAM, which ideally requires access to all European `pvol` data using the same protocol.
-
-The best source for consolidated `pvol` data is therefore **[BALTRAD](http://baltrad.eu/)**, managed by [SMHI](https://www.smhi.se/en/research/research-departments/atmospheric-remote-sensing/contact-us-1.4801) (contact person: Günther Haase). `pvol` data are archived there, but access to that server is restricted to SMHI. See \@ref(baltrad-pvol) for details on how `pvol` data are submitted to this archive.
+The best source for consolidated `pvol` data is therefore **[BALTRAD](http://baltrad.eu/)**, managed by [SMHI](https://www.smhi.se/en/research/research-departments/atmospheric-remote-sensing/contact-us-1.4801) (contact person: Günther Haase). `pvol` data are archived there, but access to that server is restricted to SMHI. See \@ref(baltrad-pvol-pipeline) for details on how `pvol` data are submitted to this archive.
 
 The rest of this chapter discusses the specifics of the BALTRAD archive.
 
@@ -66,7 +62,7 @@ opera_radars %>%
   adorn_totals("row")
 ```
 
-The BALTRAD archive does not contain `pvol` data for all of these radars/countries however (see \@ref(baltrad-pvol)). Its precise geographical scope is currently **unknown**, but [being gathered](https://github.com/enram/globam-dmp/issues/31).
+The BALTRAD archive does not contain `pvol` data for all of these radars/countries however (see \@ref(baltrad-pvol-pipeline)). Its precise geographical scope is currently **unknown**, but [being gathered](https://github.com/enram/globam-dmp/issues/31).
 
 ## Temporal scope
 
