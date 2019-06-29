@@ -52,6 +52,7 @@ Distributions of this data management plan:
 
 - Latest version (website): <https://enram.github.io/globam-dmp/>
 - Latest version (pdf): <https://enram.github.io/globam-dmp/globam-dmp.pdf>
+- Latest version (source files): <https://github.com/enram/globam-dmp>
 - Periodically archived version (pdf): _to be deposited on Zenodo.org_
 
 Suggested citation for the latest version:
