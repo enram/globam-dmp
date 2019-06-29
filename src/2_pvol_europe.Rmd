@@ -70,7 +70,7 @@ The temporal scope of the BALTRAD archive is currently **unknown**, but [being g
 
 The `pvol` archive at BALTRAD is likely to be the best source for this archive, but its scope and quality need to be assessed before we can proceed, see \@ref(pvol-eu-qa).
 
-## Format & file names
+## Format {#pvol-eu-format}
 
 The delivery of European `pvol` data is defined in the license agreement:
 
@@ -85,6 +85,8 @@ The delivery of European `pvol` data is defined in the license agreement:
 > g. Support: OPERA documents are available from the EUMETNET website’s OPERA pages (http://www.eumetnet.eu). OPERA Program Manager will manage technical questions related to the OPERA Products but may address more complicated issues to a team member who may charge a fee.
 
 Data is thus provided for every 15 minutes as `hdf5` in the [OPERA ODIM_h5 format](https://github.com/adokter/vol2bird/blob/master/doc/ODIM_H5_v23.pdf). These files can be read in `bioRad` with [`read_pvolfile()`](http://adokter.github.io/bioRad/reference/read_pvolfile.html).
+
+## File name conventions
 
 File names are generally of the format `bejab_pvol_20190620T055500Z_0x9.h5`, where:
 
@@ -109,4 +111,4 @@ The scope and quality of the BALTRAD archive need to be assessed. Tasks for this
 
 ## Storage & backup
 
-The BALTRAD archive is stored on a restricted FTP server. It is maintained by SMHI.
+European `pvol` data are stored on the BALTRAD archive, which is a restricted FTP server (see \@ref(baltrad-pvol-pipeline)).
