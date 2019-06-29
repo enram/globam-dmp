@@ -1,12 +1,26 @@
 # Other external data
 
-This chapter describes the external data required by GloBAM.
+This chapter describes other external data sources required by GloBAM.
 
-## Wind
+## Wind/weather data
+
+### Users
+
+Needed for at least WP3, WP4, WP5 and maybe WP2. The type of weather data (wind, precipitation) will differ between analyses.
+
+### Sources
+
+- World: to be defined
+- US: [NCEP/NCAR Reanalysis data from NOAA](https://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanalysis.html) has been used before.
+- Europe: to be defined, see https://github.com/enram/globam-dmp/issues/21
 
 ## Land use
 
+To be defined, see https://github.com/enram/globam-dmp/issues/25
+
 ## Artificial light
+
+### Users
 
 Needed for WP3.
 
@@ -17,6 +31,8 @@ Needed for WP3.
 We may also use the new [Black Marble product](https://viirsland.gsfc.nasa.gov/Products/NASA/BlackMarble.html) from NASA (not yet released).
 
 ## Wind energy installations
+
+### Users
 
 Needed for WP4 (Judy Shamoun-Baranes).
 
