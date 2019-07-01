@@ -111,4 +111,4 @@ The scope and quality of the BALTRAD archive need to be assessed. Tasks for this
 
 ## Storage & backup
 
-European `pvol` data are stored on the BALTRAD archive, which is a restricted FTP server (see \@ref(baltrad-pvol-pipeline)).
+European `pvol` data are stored on the BALTRAD archive, managed and financed by SMHI. The archive is a restricted FTP server, only accessible to SMHI (see \@ref(baltrad-pvol-pipeline)).
