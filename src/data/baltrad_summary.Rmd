@@ -1,0 +1,56 @@
+---
+title: "Create BALTRAD file listing summary"
+author: "Peter Desmet"
+date: "2019-09-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+Read data:
+
+```{r}
+baltrad_files <- read_csv("~/Downloads/baltrad/baltrad_filelisting.csv", col_names = FALSE)
+```
+
+Parse file names into columns:
+
+```{r}
+baltrad_summary <-
+  baltrad_files %>%
+  mutate(
+    radar = str_sub(X1, 1, 5),
+    date = paste(str_sub(X1, 12, 15), str_sub(X1, 16, 17), str_sub(X1, 18, 19), sep = "-"),
+    hour = str_sub(X1, 21, 22)
+  )
+```
+
+Summarize by `radar` and `date`, calculate number of unique hours and files:
+
+```{r}
+baltrad_summary <-
+  baltrad_summary %>%
+  group_by(
+    radar,
+    date
+  ) %>%
+  summarize(
+    hours = n_distinct(hour),
+    files = n()
+  )
+```
+
+Save file:
+
+```{r}
+write_csv(baltrad_summary, here("data", "baltrad_summary.csv"), na = "")
+```
