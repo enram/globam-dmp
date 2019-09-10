@@ -1,0 +1,170 @@
+---
+title: "Baltrad data coverage"
+author: "Cecilia Nilsson"
+date: "`r Sys.Date()`"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = FALSE)
+Sys.setenv(TZ="UTC") 
+
+```
+  
+```{r load_data}
+
+coverage <-read.csv("https://raw.githubusercontent.com/enram/globam-dmp/master/data/baltrad_summary.csv", header = TRUE)
+#coverage <-read.csv("/Users/lhn34/Documents/ENRAM/repostitory coverage/Baltrad/baltrad_summary.csv", header = TRUE)
+
+```
+
+```{r modify_data}
+
+coverage%>%
+  
+  # Add "country" column (from "radar")
+  mutate(country = substring(radar, 1,2))%>%
+  
+  # Change to dateformat
+  mutate(date = as.Date(date)
+           )->coverage2
+
+```
+
+Spans from `r min(coverage2$date)` to `r max(coverage2$date)`.
+  
+```{r input year}
+
+# Create inputbox with years that outputs "Y", starts on last year 
+# in data, and spans from first to last year
+numericInput("Y", 
+             "Year", 
+             year(max(coverage2$date)), 
+             min = year(min(coverage2$date)), 
+             max = year(max(coverage2$date)))
+
+```
+
+```{r plot year}
+
+renderPlot({
+
+# Filter data by input from inputbox
+
+year_coverage<-coverage2[year(coverage2$date)==as.character(input$Y),]
+
+# Plot data
+ggplot(year_coverage,aes(date, radar))+
+
+  # Add tiles hours with data present
+  geom_tile(aes(fill = hours), 
+            colour = "white")+
+    
+  # Scale color
+  scale_fill_gradient(low = "white", 
+                      high = "steelblue", 
+                      limits = c(0,24))+
+    
+  # Scale x axis to always show one full year
+  scale_x_date(limits = c(as.Date(paste0(as.character(input$Y),"-01-01")), 
+                          as.Date(paste0(as.character(input$Y),"-12-31"))), 
+               expand = c(0,0), 
+               date_breaks = "1 month",
+               date_labels = "%b")+
+    
+  # Add labels and title
+  labs(y = "Radar id", 
+       x = "Date", 
+       subtitle = paste0("Number of radars: ", length(unique(year_coverage$radar)), 
+                       ", Missing countries: ", paste(unique(coverage2$country[!coverage2$country %in% year_coverage$country]), collapse=", ")),
+       title = paste(as.character(input$Y)),
+       fill = "Hours")+
+    
+  # Facet per country, allow y to differ between countries ("scales")
+  # and exclude radars from other countries ("space")
+  facet_grid(country~., 
+             scales = "free_y", 
+             space = "free_y")+
+  
+  # Make pretty
+  theme(plot.title = element_text(size = rel(4), hjust = 0.5),
+        plot.subtitle  = element_text(size = rel(1.5), hjust = 0.5),
+        axis.text.y = element_text(size = rel(2)),
+        axis.text.x = element_text(size = rel(2)),
+        axis.title.y = element_text(size = rel(2), angle = 90),
+        axis.title.x = element_text(size = rel(2)),
+        strip.text = element_text(size = rel(1.5)),
+        legend.title = element_text(size = 22),
+        legend.text = element_text(size = 17))
+ 
+  }, width = 1200, height = 2200)
+
+```
+
+```{r input country}
+
+# Create inputbox 
+selectInput(inputId = "C", 
+            label = "Country", 
+            choices =  sort(unique(coverage2$country)))
+
+
+```
+
+```{r plot country}
+
+renderPlot({
+
+# Filter data by input from inputbox
+
+country_coverage<-coverage2[coverage2$country==as.character(input$C),]
+
+# Plot data
+ggplot(country_coverage,aes(date, radar))+
+
+  # Add tiles hours with data present
+  geom_tile(aes(fill = hours), 
+            colour = "white")+
+    
+  # Scale color
+  scale_fill_gradient(low = "white", 
+                      high = "steelblue", 
+                      limits = c(0,24))+
+    
+  # Scale x axis
+  scale_x_date(expand = c(0,0), 
+               date_breaks = "1 year",
+               date_labels = "%Y")+
+    
+  # Add labels and title
+  labs(y = "Radar id", 
+       x = "Date",
+       title = paste(as.character(input$C)),
+       fill = "Hours")+
+    
+  # Facet per country, allow y to differ between countries ("scales")
+  # and exclude radars from other countries ("space")
+  facet_grid(country~., 
+             scales = "free_y", 
+             space = "free_y")+
+  
+  # Make pretty
+  theme(plot.title = element_text(size = rel(4), hjust = 0.5),
+        plot.subtitle  = element_text(size = rel(1.5), hjust = 0.5),
+        axis.text.y = element_text(size = rel(2)),
+        axis.text.x = element_text(size = rel(2)),
+        axis.title.y = element_text(size = rel(2), angle = 90),
+        axis.title.x = element_text(size = rel(2)),
+        strip.text = element_text(size = rel(1.5)),
+        legend.title = element_text(size = 22),
+        legend.text = element_text(size = 17))
+ 
+  }, width = 2000, height = 1000)
+
+```
