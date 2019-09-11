@@ -25,32 +25,38 @@ baltrad_files <- read_csv("~/Downloads/baltrad/baltrad_filelisting.csv", col_nam
 Parse file names into columns:
 
 ```{r}
-baltrad_summary <-
+baltrad_files <-
   baltrad_files %>%
   mutate(
     radar = str_sub(X1, 1, 5),
     date = paste(str_sub(X1, 12, 15), str_sub(X1, 16, 17), str_sub(X1, 18, 19), sep = "-"),
-    hour = str_sub(X1, 21, 22)
+    hour = str_sub(X1, 21, 22),
+    hex = str_extract(X1, "\\dx\\d")
   )
 ```
 
-Summarize by `radar` and `date`, calculate number of unique hours and files:
+Summarize by `radar` and `date`, calculate number of unique hours, files and listed hex values:
 
 ```{r}
 baltrad_summary <-
-  baltrad_summary %>%
+  baltrad_files %>%
   group_by(
     radar,
     date
   ) %>%
   summarize(
     hours = n_distinct(hour),
-    files = n()
+    files = n(),
+    hex = paste(unique(sort(hex)), collapse = "|"), # Sort will also remove NA values
+  ) %>%
+  arrange(
+    radar,
+    date
   )
 ```
 
 Save file:
 
 ```{r}
-write_csv(baltrad_summary, here("data", "baltrad_summary.csv"), na = "")
+write_csv(baltrad_summary, here::here("data", "baltrad_summary.csv"), na = "")
 ```
