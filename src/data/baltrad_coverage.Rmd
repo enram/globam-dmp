@@ -65,5 +65,30 @@ Save file:
 write_csv(baltrad_coverage, here::here("data", "baltrad_pvol_coverage.csv"), na = "")
 ```
 
+## Combine pvol and vp coverage
+
+Read files:
+
 ```{r}
+baltrad_pvol_coverage <- read_csv(here::here("data", "baltrad_pvol_coverage.csv"))
+enram_vp_coverage <- read_csv("https://lw-enram.s3-eu-west-1.amazonaws.com/coverage.csv")
+```
+
+Left join BALTRAD data with ENRAM data. Note: This will ignore any radars or timestamps in the ENRAM data repository that are not on BALTRAD:
+
+```{r}
+coverage <-
+  baltrad_pvol_coverage %>%
+  left_join(enram_vp_coverage, by = c("radar" = "countryradar", "date" = "date"))
+```
+
+Add boolean values for `pvol` and `vp` coverage:
+
+```{r}
+coverage <- 
+  coverage %>%
+  mutate(
+    pvol = if_else(!is.na(files), TRUE, FALSE),
+    vp = if_else(!is.na(vp_files), TRUE, FALSE)
+  )
 ```
