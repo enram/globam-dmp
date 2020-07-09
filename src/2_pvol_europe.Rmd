@@ -99,7 +99,7 @@ File names are generally of the format `bejab_pvol_20190620T055500Z_0x9.h5`, whe
 
 ## Quality assurance {#pvol-eu-qa}
 
-The scope and quality of the BALTRAD archive were assessed in an April 2020 workshop, the results of which can be found in [this wiki](https://github.com/enram/globam-dmp/wiki). The [conclusion](https://app.slack.com/docs/THD6ADLTW/F013AUCFVE0) is the collecting good data through BALTRAD going forward might be challenging because of filtering in some countries (e.g. France and Germany), while it is a good source for historic polar volumes between 2012-2018.
+The scope and quality of the BALTRAD archive were assessed in an April 2020 workshop, the results of which can be found in [this wiki](https://github.com/enram/globam-dmp/wiki). The [conclusion](https://globam.slack.com/files/THD6ADLTW/F013AUCFVE0) is the collecting good data through BALTRAD going forward might be challenging because of filtering in some countries (e.g. France and Germany), while it is a good source for historic polar volumes between 2012-2018.
 
 ## Storage & backup
 
