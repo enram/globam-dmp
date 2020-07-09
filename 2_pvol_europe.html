@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 European radar data (pvol) | GloBAM Data Management Plan</title>
   <meta name="description" content="2 European radar data (pvol) | GloBAM Data Management Plan" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 European radar data (pvol) | GloBAM Data Management Plan" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Adriaan Dokter" />
 
 
-<meta name="date" content="2019-09-13" />
+<meta name="date" content="2020-07-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,6 +42,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -181,7 +184,7 @@
 <div id="opera-db" class="section level2">
 <h2><span class="header-section-number">2.3</span> Geographical scope</h2>
 <p>OPERA manages a list of radars, their unique codes (e.g. <code>odimcode</code>) and associated metadata. The list currently contains 232 radars. This <strong>OPERA database</strong> is available as <a href="http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/index.html">an interactive map</a> derived from <a href="http://eumetnet.eu/wp-content/themes/aeron-child/observations-programme/current-activities/opera/database/OPERA_Database/OPERA_RADARS_DB.json">a json file containing the metadata</a>. To keep track of changes, we archive this <code>json</code> on <a href="https://github.com/enram/globam-dmp/blob/master/data/OPERA_RADARS_DB.json">GitHub</a> every time we update the DMP.</p>
-<p>The license agreement allows access to data from 19 countries:</p>
+<p>The license agreement allows access to data from 20 countries:</p>
 <div class="kable-table">
 <table>
 <thead>
@@ -202,50 +205,50 @@
 <tr class="even">
 <td align="left">Belgium</td>
 <td align="left">BE</td>
-<td align="right">3</td>
-<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">4</td>
 </tr>
 <tr class="odd">
 <td align="left">Croatia</td>
 <td align="left">HR</td>
-<td align="right">5</td>
-<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
 </tr>
 <tr class="even">
-<td align="left">Czechia</td>
-<td align="left">CZ</td>
-<td align="right">2</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
 <td align="left">Denmark</td>
 <td align="left">DK</td>
 <td align="right">5</td>
 <td align="right">5</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Estonia</td>
 <td align="left">EE</td>
 <td align="right">2</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Finland</td>
 <td align="left">FI</td>
-<td align="right">10</td>
+<td align="right">11</td>
 <td align="right">10</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">France</td>
 <td align="left">FR</td>
 <td align="right">31</td>
 <td align="right">25</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Germany</td>
 <td align="left">DE</td>
 <td align="right">20</td>
-<td align="right">20</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">Israel</td>
+<td align="left">IL</td>
+<td align="right">1</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">Netherlands</td>
@@ -310,7 +313,7 @@
 <tr class="even">
 <td align="left">Total</td>
 <td align="left">-</td>
-<td align="right">163</td>
+<td align="right">162</td>
 <td align="right">152</td>
 </tr>
 </tbody>
@@ -354,16 +357,7 @@
 </div>
 <div id="pvol-eu-qa" class="section level2">
 <h2><span class="header-section-number">2.7</span> Quality assurance</h2>
-<p>The scope and quality of the BALTRAD archive need to be assessed. Tasks for this are listed <a href="https://github.com/enram/globam-dmp/milestone/1">here</a> and include:</p>
-<ol style="list-style-type: decimal">
-<li>Get a file listing for <code>pvol</code> archive</li>
-<li>Select subsets: first 2 days of data per radar/month for 2016, 2017, 2018 (72 days): either pvol or pre-merged scans</li>
-<li>Transfer subsets to accessible FTP server</li>
-<li>Merge to pvol (test 1)</li>
-<li>Process with <code>vol2bird</code> to <code>vp</code> (test 2)</li>
-<li>Store output <code>vp</code> files</li>
-<li>Visual control of <code>vp</code> (test 3)</li>
-</ol>
+<p>The scope and quality of the BALTRAD archive were assessed in an April 2020 workshop, the results of which can be found in <a href="https://github.com/enram/globam-dmp/wiki">this wiki</a>. The <a href="https://globam.slack.com/files/THD6ADLTW/F013AUCFVE0">conclusion</a> is the collecting good data through BALTRAD going forward might be challenging because of filtering in some countries (e.g. France and Germany), while it is a good source for historic polar volumes between 2012-2018.</p>
 </div>
 <div id="storage-backup" class="section level2">
 <h2><span class="header-section-number">2.8</span> Storage &amp; backup</h2>
@@ -382,11 +376,13 @@
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -394,7 +390,6 @@ gitbook.start({
 "github": false,
 "facebook": false,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
@@ -411,6 +406,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
