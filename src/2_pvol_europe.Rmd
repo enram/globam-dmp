@@ -99,15 +99,7 @@ File names are generally of the format `bejab_pvol_20190620T055500Z_0x9.h5`, whe
 
 ## Quality assurance {#pvol-eu-qa}
 
-The scope and quality of the BALTRAD archive need to be assessed. Tasks for this are listed [here](https://github.com/enram/globam-dmp/milestone/1) and include:
-
-1. Get a file listing for `pvol` archive
-2. Select subsets: first 2 days of data per radar/month for 2016, 2017, 2018 (72 days): either pvol or pre-merged scans
-3. Transfer subsets to accessible FTP server
-4. Merge to pvol (test 1)
-5. Process with `vol2bird` to `vp` (test 2)
-6. Store output `vp` files
-7. Visual control of `vp` (test 3)
+The scope and quality of the BALTRAD archive were assessed in an April 2020 workshop, the results of which can be found in [this wiki](https://github.com/enram/globam-dmp/wiki). The [conclusion](https://app.slack.com/docs/THD6ADLTW/F013AUCFVE0) is the collecting good data through BALTRAD going forward might be challenging because of filtering in some countries (e.g. France and Germany), while it is a good source for historic polar volumes between 2012-2018.
 
 ## Storage & backup
 
