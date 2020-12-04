@@ -34,6 +34,12 @@ download.file("http://eumetnet.eu/wp-content/themes/aeron-child/observations-pro
 ```{r}
 # Read data files
 opera_radars <- fromJSON(here("data", "OPERA_RADARS_DB.json"))
+
+# Remove empty last column: https://github.com/enram/globam-dmp/issues/52
+colnames <- colnames(opera_radars)
+colnames <- colnames[1:(length(colnames)-1)]
+opera_radars <- opera_radars[colnames]
+
 opera_countries <- read_csv(here("data", "opera_countries.csv"))
 ```
 
