@@ -31,7 +31,9 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          extra-packages: [rmarkdown, bookdown]
+          extra-packages: |
+            rmarkdown
+            bookdown
 
       - name: Build site
         run: Rscript -e 'bookdown::render_book("index.Rmd", quiet = TRUE)'
