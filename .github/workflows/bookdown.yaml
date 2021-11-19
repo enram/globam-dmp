@@ -30,8 +30,10 @@ jobs:
           restore-keys: bookdown-
 
       - name: Build site
-        run: Rscript -e 'bookdown::render_book("index.Rmd", quiet = TRUE)'
-        Run: Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::pdf_book")'
+        run: Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")'
+
+      - name: Build pdf
+        run: Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::pdf_book")'
 
       - name: Deploy to GitHub pages 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
