@@ -1,0 +1,279 @@
+---
+title: "Create BALTRAD coverage figures"
+author: "Cecilia Nilsson, Peter Desmet"
+date: "`r Sys.Date()`"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = FALSE)
+Sys.setenv(TZ = "UTC") 
+```
+
+Load CSVs:
+
+```{r message = FALSE}
+baltrad_pvol_coverage <- read_csv(here::here("data", "baltrad_pvol_coverage.csv"))
+enram_vp_coverage <- read_csv("https://lw-enram.s3-eu-west-1.amazonaws.com/coverage.csv")
+```
+
+Join BALTRAD coverage with ENRAM VP coverage:
+
+```{r}
+coverage <-
+  baltrad_pvol_coverage %>%
+  full_join(enram_vp_coverage, by = c("radar" = "countryradar", "date" = "date"))
+```
+
+Data transformations:
+
+```{r modify_data, warning = FALSE}
+coverage2 <-
+  coverage %>%
+  # Add "country" column (from "radar")
+  mutate(country = substring(radar, 1,2)) %>%
+  # Change to dateformat
+  mutate(date = as.Date(date)) %>%
+  # Group by country to calculate country specific precent coverage 
+  group_by(country) %>%
+  mutate(coverage_percent = (vp_files / max(vp_files, na.rm = TRUE)) * 100)
+```
+
+Plot coverage of vertical profiles (VP) per day in [ENRAM repository](http://enram.github.io/data-repository/?prefix=) and hours with polar volume files (pvol) in the BALTRAD repository. VP's are shown as percent coverage per day, calculated by the number of vp per day out of max number of vp per day *per country* in the repository. Note that if the scan intervals differ between radars within countries (or with time), the % coverage will not be correct. VP's spans from `r min(coverage2$date)` to `r max(coverage2$date)`. Pvols are shown as number of hours containing any pvol file, per day, radar and country. Pvol data span from `r min(baltrad_pvol_coverage$date)` to `r max(baltrad_pvol_coverage$date)`.
+
+#### Plot mean % VP coverage and sum of pvol hours per month, per country:  
+  
+```{r plot all, fig.width = 15, fig.height = 10}
+coverage2 %>% 
+  mutate(year_month = substring(date, 1, 7)) %>% 
+  group_by(country, year_month) %>% 
+  summarize(
+    coverage_percent = mean(coverage_percent, na.rm = TRUE),
+    hours = sum(hours)
+  ) %>%
+  
+  # Plot
+  ggplot(aes(year_month, country))+
+
+  # Add tiles
+  # ENRAM repo vp_files
+  geom_tile(aes(fill = coverage_percent), alpha = 0.9)+
+  
+  # BALTRAD pvols
+  geom_tile(aes(colour = hours), fill = "white", alpha = 0, size = 0.6)+
+
+  # Scale fill (ENRAM repo)
+  scale_fill_gradient(
+    low = "white",
+    high = "#513266",
+    na.value = 'white',
+    limits = c(0,100)
+  )+
+  
+  # Scale color (BALTRAD)  
+  scale_color_gradient(
+    low = "white",
+    high = "grey20",
+    na.value = 'white'
+  )+
+    
+  # Add labels and title
+  labs(
+    y = "Country", 
+    x = "Date", 
+    fill = "Mean \ % VP \nin repo",
+    color = "Sum hours \nBaltrad"
+  )+
+  
+  # Facet per country, allow y to differ between countries ("scales")
+  # and exclude radars from other countries ("space")
+  facet_grid(country~., scales = "free_y",  space = "free_y")+
+  
+  # Make pretty
+  theme(
+    plot.title = element_text(size = rel(3)),
+    plot.subtitle  = element_text(size = rel(1.5), margin = margin(t = 20, b = -70)),
+    panel.background = element_rect(fill = "white", colour = NA),
+    axis.text.y = element_text(size = rel(2)),
+    axis.text.x = element_text(angle = 90),
+    axis.title.y = element_text(size = rel(2), angle = 90),
+    axis.title.x = element_text(size = rel(2)),
+    strip.text = element_text(size = rel(1.5)),
+    legend.title = element_text(size = 15),
+    legend.position = "top",
+    legend.direction = "vertical",
+    legend.box = "horizontal",
+    legend.justification = c(1, 0),
+    legend.text = element_text(size = 10)
+  )
+```
+
+#### Plot % VP coverage and pvol hours per day, per radar. Only radars/countries with data during that year shown in plot. Choose year:
+  
+```{r input year}
+# Create inputbox with years that outputs "Y", starts on last year 
+# in data, and spans from first to last year
+numericInput(
+  "Y", 
+  "Year", 
+  year(max(coverage2$date)), 
+  min = year(min(coverage2$date)), 
+  max = year(max(coverage2$date))
+)
+```
+
+
+```{r plot year}
+renderPlot({
+
+# Filter data by input from inputbox
+year_coverage<-coverage2[year(coverage2$date)==as.character(input$Y),]
+
+# Plot data
+ggplot(year_coverage,aes(date, radar))+
+
+  # ENRAM repo vp_files
+  geom_tile(aes(fill = coverage_percent), alpha = 0.9)+
+  
+  # BALTRAD pvols 
+  geom_tile(aes(colour = hours), fill = "white", alpha = 0, size = 0.3)+
+
+  # Scale fill (ENRAM repo)
+  scale_fill_gradient(
+    low = "white", 
+    high = "#513266",
+    na.value = 'white',
+    limits = c(0,100)
+  )+
+  
+  # Scale color (BALTRAD)    
+  scale_color_gradient(
+    low = "white", 
+    high = "grey50",
+    na.value = 'white'
+  )+
+    
+  # Scale x axis to always show one full year
+  scale_x_date(
+    limits = c(as.Date(paste0(as.character(input$Y),"-01-01")), 
+               as.Date(paste0(as.character(input$Y),"-12-31"))), 
+    expand = c(0,0), 
+    date_breaks = "1 month",
+    date_labels = "%b"
+  )+
+    
+  # Add labels and title
+  labs(
+    y = "Radar id", 
+    x = "Date", 
+    subtitle = paste0("Number of radars: ", length(unique(year_coverage$radar))),
+    title = paste(as.character(input$Y)),
+    fill = "\ % VP in repo",
+    color = "Pvol h per day\nin Baltrad"
+  )+
+  
+  # Facet per country, allow y to differ between countries ("scales")
+  # and exclude radars from other countries ("space")
+  facet_grid(
+    country~., 
+    scales = "free_y", 
+    space = "free_y"
+  )+
+  
+  # Make pretty
+  theme(
+    plot.title = element_text(size = rel(5)),
+    plot.subtitle = element_text(size = rel(1.5), margin = margin(t = 20, b = -70)),
+    panel.background = element_rect(fill = "white", colour = NA),
+    axis.text.y = element_text(size = rel(2)),
+    axis.text.x = element_text(hjust = -0.2, size = rel(2)),
+    axis.title.y = element_text(size = rel(2), angle = 90),
+    axis.title.x = element_text(size = rel(2)),
+    strip.text = element_text(size = rel(1.5)),
+    legend.title = element_text(size = 22),
+    legend.position = "top",
+    legend.direction = "vertical",
+    legend.box = "horizontal",
+    legend.justification = c(1, 0),
+    legend.text = element_text(size = 17)
+  )
+}, width = 1600, height = 3000)
+```
+
+#### Plot % VP coverage and pvol hours per day, per radar, all years. Only radars/countries with data during that year shown in plot. Choose country:
+  
+```{r input country}
+# Create inputbox 
+selectInput(
+  inputId = "C", 
+            label = "Country", 
+            choices =  sort(unique(coverage2$country)))
+
+```
+
+```{r plot country}
+renderPlot({
+  # Filter data by input from inputbox
+  country_coverage <- coverage2[coverage2$country==as.character(input$C),]
+
+  # Plot data
+  ggplot(country_coverage,aes(date, radar))+
+
+  # ENRAM repo vp_files
+  geom_tile(aes(fill = coverage_percent), alpha = 0.9)+
+  
+  # BALTRAD pvols 
+  geom_tile(aes(colour = hours), alpha = 0, size = 0.1)+
+
+  # Scale fill (ENRAM repo)
+  scale_fill_gradient(
+    low = "white", 
+    high = "#513266",
+    na.value = 'white',
+    limits = c(0,100)
+  )+
+   
+  # Scale color (BALTRAD)   
+  scale_color_gradient(low = "white", high = "grey70", na.value = 'white')+
+
+  # Scale x axis
+  scale_x_date(expand = c(0,0), date_breaks = "1 year", date_labels = "%Y")+
+    
+  # Add labels and title
+  labs(
+    y = "Radar id", 
+    x = "Date",
+    title = paste(as.character(input$C)),
+    subtitle = paste0("Number of radars: ", length(unique(country_coverage$radar))),
+    fill = "\ % VP in repo",
+    color = "Pvol h per day\nin Baltrad"
+  )+
+    
+  # Facet per country, allow y to differ between countries ("scales")
+  # and exclude radars from other countries ("space")
+  
+  # Make pretty
+  theme(
+    plot.title = element_text(size = rel(5)),
+    plot.subtitle  = element_text(size = rel(1.5), margin = margin(t = 20, b = -70)),
+    panel.background = element_rect(fill = "white", colour = NA),
+    axis.text.y = element_text(size = rel(2)),
+    axis.text.x = element_text(hjust = -0.2, size = rel(2)),
+    axis.title.y = element_text(size = rel(2), angle = 90),
+    axis.title.x = element_text(size = rel(2)),
+    strip.text = element_text(size = rel(1.5)),
+    legend.title = element_text(size = 22),
+    legend.position = "top",
+    legend.direction = "vertical",
+    legend.box = "horizontal",
+    legend.justification = c(1, 0),
+    legend.text = element_text(size = 17)
+  )
+}, width = 1000, height = 1000)
+```
